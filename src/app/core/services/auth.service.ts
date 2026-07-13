@@ -10,8 +10,7 @@ import { AdminDto } from '../models/types';
 export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
-  private readonly apiUrl = 'http://localhost:5137/api/auth';
-
+  private readonly apiUrl = 'https://elegantvisit-backend.onrender.com/api/auth';
   // Signals for state management
   readonly currentUser = signal<AdminDto | null>(null);
   readonly isLoggedIn = computed(() => this.currentUser() !== null);

@@ -8,7 +8,7 @@ import { Category, Template, Order, DashboardStats } from '../models/types';
 })
 export class ApiService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:5137/api';
+  private readonly apiUrl = 'https://elegantvisit-backend.onrender.com/api';
 
   // Categories API
   getCategories(): Observable<Category[]> {
