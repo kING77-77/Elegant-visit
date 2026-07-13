@@ -1,0 +1,64 @@
+<div class="catalog-container animate-fade-in">
+  <div class="catalog-header">
+    <h1 class="catalog-title">{{ 'catalog.title' | translate }}</h1>
+    <p class="catalog-subtitle">{{ 'catalog.subtitle' | translate }}</p>
+  </div>
+
+  <!-- Search and Filters Section -->
+  <section class="filters-section glass-panel">
+    <div class="categories-filter">
+      <button class="filter-pill" [class.active]="selectedCategoryId() === null" (click)="selectCategory(null)">
+        {{ 'catalog.allStyles' | translate }}
+      </button>
+
+      @for (category of categories(); track category.id) {
+      <button class="filter-pill" [class.active]="selectedCategoryId() === category.id"
+        (click)="selectCategory(category.id)">
+        {{ category.name | translate }}
+      </button>
+      }
+    </div>
+  </section>
+
+
+  <!-- Templates Grid -->
+  <section class="templates-section">
+    @if (loading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>{{ 'catalog.loading' | translate }}</p>
+    </div>
+    } @else {
+    @if (templates().length === 0) {
+    <div class="empty-state glass-panel">
+      <i class="fa-regular fa-folder-open empty-icon"></i>
+      <h3>{{ 'catalog.notFound' | translate }}</h3>
+      <p>{{ 'catalog.notFoundDesc' | translate }}</p>
+      <button class="btn-gold" (click)="selectCategory(null); searchQuery.set(''); loadTemplates()">{{
+        'catalog.resetFilters' | translate }}</button>
+    </div>
+    } @else {
+    <div class="templates-grid">
+      @for (template of templates(); track template.id) {
+      <div class="template-card glass-panel animate-slide-up" [routerLink]="['/catalog', template.id]">
+        <div class="card-image-wrapper">
+          <img [src]="template.imageUrl" [alt]="template.title | translate" class="card-image">
+          <div class="card-overlay">
+            <span class="btn-gold btn-small">{{ 'popular.more' | translate }}</span>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">{{ template.title | translate }}</h3>
+          <p class="card-description">{{ template.description | translate }}</p>
+          <div class="card-footer">
+            <span class="card-price">{{ template | localizedPrice }}</span>
+            <span class="card-link">{{ 'catalog.select' | translate }} <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }
+    }
+  </section>
+</div>

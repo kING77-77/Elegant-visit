@@ -1,0 +1,190 @@
+@if (showPublicLayout()) {
+  <!-- Luxury Public Header -->
+  <header class="luxury-header">
+    <div class="header-container">
+      <a routerLink="/" class="logo-brand-link">
+        <div class="logo-circle">
+          <img src="logo.png" alt="Elegant visit logo" class="logo-image" />
+        </div>
+        <span class="brand-text">Elegant visit</span>
+      </a>
+
+      <nav class="luxury-nav">
+        <a routerLink="/" fragment="about" class="nav-item">{{ 'nav.about' | translate }}</a>
+        <a routerLink="/catalog" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{ 'nav.invitations' | translate }}</a>
+        <a routerLink="/" fragment="advantages" class="nav-item">{{ 'nav.advantages' | translate }}</a>
+        <a routerLink="/" fragment="contacts" class="nav-item">{{ 'nav.contacts' | translate }}</a>
+      </nav>
+
+      <div class="luxury-right-controls">
+        <!-- Language Switcher -->
+        <div class="luxury-lang-selector">
+          <button 
+            class="lang-pill-btn" 
+            [class.active]="translationService.currentLang() === 'am'" 
+            (click)="translationService.setLanguage('am')"
+            title="Հայերեն"
+          >
+            AM
+          </button>
+          <button 
+            class="lang-pill-btn" 
+            [class.active]="translationService.currentLang() === 'ka'" 
+            (click)="translationService.setLanguage('ka')"
+            title="ქართული"
+          >
+            GE
+          </button>
+          <button 
+            class="lang-pill-btn" 
+            [class.active]="translationService.currentLang() === 'ru'" 
+            (click)="translationService.setLanguage('ru')"
+            title="Русский"
+          >
+            RU
+          </button>
+          <button 
+            class="lang-pill-btn" 
+            [class.active]="translationService.currentLang() === 'en'" 
+            (click)="translationService.setLanguage('en')"
+            title="English"
+          >
+            EN
+          </button>
+        </div>
+
+        <div class="luxury-search-wrapper">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input 
+              type="text" 
+              [value]="searchQuery()" 
+              (input)="onSearchChange($event)"
+              (keyup.enter)="triggerSearch()"
+              [placeholder]="'nav.searchPlaceholder' | translate" 
+              class="search-input"
+            >
+            @if (searchQuery()) {
+              <button class="clear-search-btn" (click)="searchQuery.set(''); triggerSearch()"><i class="fa-solid fa-xmark"></i></button>
+            }
+          </div>
+        </div>
+
+        <button class="theme-toggle-btn" (click)="toggleTheme()" [attr.aria-label]="isDarkTheme() ? 'Включить светлую тему' : 'Включить темную тему'">
+          @if (isDarkTheme()) {
+            <i class="fa-solid fa-sun"></i>
+          } @else {
+            <i class="fa-solid fa-moon"></i>
+          }
+        </button>
+      </div>
+
+      <!-- Hamburger Menu Button -->
+      <button 
+        class="mobile-menu-toggle" 
+        (click)="toggleMobileMenu()" 
+        [class.open]="isMobileMenuOpen()"
+        [attr.aria-label]="isMobileMenuOpen() ? 'Закрыть меню' : 'Открыть меню'"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" [class.open]="isMobileMenuOpen()">
+    <nav class="mobile-nav-menu">
+      <a routerLink="/" fragment="about" class="mobile-nav-item" (click)="closeMobileMenu()">{{ 'nav.about' | translate }}</a>
+      <a routerLink="/catalog" class="mobile-nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">{{ 'nav.invitations' | translate }}</a>
+      <a routerLink="/" fragment="advantages" class="mobile-nav-item" (click)="closeMobileMenu()">{{ 'nav.advantages' | translate }}</a>
+      <a routerLink="/" fragment="contacts" class="mobile-nav-item" (click)="closeMobileMenu()">{{ 'nav.contacts' | translate }}</a>
+      
+      <!-- Mobile Language Selector -->
+      <div class="mobile-lang-selector">
+        <button 
+          class="lang-pill-btn" 
+          [class.active]="translationService.currentLang() === 'am'" 
+          (click)="translationService.setLanguage('am'); closeMobileMenu()"
+        >
+          AM
+        </button>
+        <button 
+          class="lang-pill-btn" 
+          [class.active]="translationService.currentLang() === 'ka'" 
+          (click)="translationService.setLanguage('ka'); closeMobileMenu()"
+        >
+          GE
+        </button>
+        <button 
+          class="lang-pill-btn" 
+          [class.active]="translationService.currentLang() === 'ru'" 
+          (click)="translationService.setLanguage('ru'); closeMobileMenu()"
+        >
+          RU
+        </button>
+        <button 
+          class="lang-pill-btn" 
+          [class.active]="translationService.currentLang() === 'en'" 
+          (click)="translationService.setLanguage('en'); closeMobileMenu()"
+        >
+          EN
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Content Wrapper -->
+  <main class="luxury-main">
+    <router-outlet />
+  </main>
+
+  <!-- Luxury Public Footer -->
+  <footer class="luxury-footer" id="contacts">
+    <div class="footer-container">
+      <div class="footer-section brand-info">
+        <h3 class="footer-brand-title">Elegant visit</h3>
+        <p class="footer-brand-desc">{{ 'footer.description' | translate }}</p>
+        <div class="social-icons">
+          <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-link" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="social-link" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section links-group">
+        <h4 class="footer-title">{{ 'footer.nav' | translate }}</h4>
+        <ul class="footer-links">
+          <li><a routerLink="/">{{ 'footer.home' | translate }}</a></li>
+          <li><a routerLink="/catalog">{{ 'footer.catalog' | translate }}</a></li>
+          <li><a routerLink="/" fragment="about">{{ 'footer.about' | translate }}</a></li>
+          <li><a routerLink="/" fragment="advantages">{{ 'nav.advantages' | translate }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section links-group">
+        <h4 class="footer-title">{{ 'footer.categories' | translate }}</h4>
+        <ul class="footer-links">
+          <li><a routerLink="/catalog" [queryParams]="{ categoryName: 'Свадьбы' }">{{ 'footer.weddingDays' | translate }}</a></li>
+          <li><a routerLink="/catalog" [queryParams]="{ categoryName: 'Дни рождения' }">{{ 'Дни рождения' | translate }}</a></li>
+          <li><a routerLink="/catalog" [queryParams]="{ categoryName: 'Крещение' }">{{ 'footer.baptismDays' | translate }}</a></li>
+          <li><a routerLink="/catalog" [queryParams]="{ categoryName: 'Другое' }">{{ 'footer.otherEvents' | translate }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section contact-info">
+        <h4 class="footer-title">{{ 'footer.contactsTitle' | translate }}</h4>
+        <p class="contact-item"><i class="fa-solid fa-envelope"></i> info&#64;elegant-visit.ru</p>
+        <p class="contact-item"><i class="fa-solid fa-phone"></i> +7 (999) 123-45-67</p>
+        <p class="contact-item"><i class="fa-solid fa-location-dot"></i> {{ 'footer.address' | translate }}</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Elegant visit. {{ 'footer.copy' | translate }}</p>
+    </div>
+  </footer>
+} @else {
+  <!-- Protected/Admin layouts render directly without the public wrapper -->
+  <router-outlet />
+}

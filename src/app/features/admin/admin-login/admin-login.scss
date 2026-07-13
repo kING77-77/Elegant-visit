@@ -1,0 +1,147 @@
+.login-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #08080a;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.glow-bg {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(197, 168, 106, 0.1) 0%, rgba(8, 8, 10, 0) 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 450px;
+  background: rgba(22, 22, 28, 0.85);
+  border-radius: 16px;
+  padding: 50px 40px;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(197, 168, 106, 0.08);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--color-gold);
+  margin-bottom: 10px;
+}
+
+.login-title {
+  font-size: 2.2rem;
+  font-family: var(--font-serif);
+}
+
+.login-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.error-alert {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 6px;
+  padding: 12px 16px;
+  color: #f87171;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gold);
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+.form-input {
+  width: 100%;
+  padding-left: 48px;
+}
+
+.btn-gold {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.back-link {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-link:hover {
+  color: var(--color-gold);
+  transform: translateX(-4px);
+}
+
+.spinner-white {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+  border-top-color: #0b0b0e;
+  border-right-color: transparent;
+  display: inline-block;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 40px 24px;
+  }
+  .login-title {
+    font-size: 1.8rem;
+  }
+}

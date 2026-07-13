@@ -1,0 +1,289 @@
+/* Global Reset and Luxury Styling */
+:root {
+  /* Default: Light Gold Theme */
+  --color-bg: #FCFAF6;                     /* Elegant warm ivory background */
+  --color-surface: rgba(255, 255, 255, 0.75); /* Translucent glass white */
+  --color-surface-card: rgba(255, 255, 255, 0.55);
+  --color-border: rgba(197, 168, 106, 0.25); /* Elegant thin gold outline */
+  --color-border-focus: rgba(197, 168, 106, 0.6);
+  --color-gold: #c5a86a;
+  --color-gold-light: #e5cf9c;
+  --color-gold-dark: #8c7340;
+  --color-text: #2C2A29;                   /* Charcoal slate primary text */
+  --color-text-muted: #7E7975;             /* Soft gold-tinted gray text */
+  --color-text-dark: #1f2937;
+  
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  --shadow-gold: 0 10px 30px rgba(197, 168, 106, 0.05);
+  --shadow-neon: 0 8px 32px 0 rgba(44, 42, 41, 0.04);
+  --glass-blur: blur(16px);
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shared components theme mappings (Light default) */
+  --color-header-bg: rgba(252, 250, 246, 0.85);
+  --color-footer-bg: #F5F2EA;
+  --color-footer-border: rgba(197, 168, 106, 0.15);
+  --color-input-bg: rgba(255, 255, 255, 0.8);
+  --color-input-focus-bg: #ffffff;
+  --color-social-bg: rgba(44, 42, 41, 0.03);
+  --color-card-overlay: rgba(252, 250, 246, 0.7);
+}
+
+body.dark-theme {
+  /* Secondary: Dark Theme overrides */
+  --color-bg: #0b0b0e;
+  --color-surface: rgba(22, 22, 28, 0.75);
+  --color-surface-card: rgba(30, 30, 38, 0.45);
+  --color-border: rgba(212, 175, 55, 0.15);
+  --color-border-focus: rgba(212, 175, 55, 0.45);
+  --color-text: #f7f7f8;
+  --color-text-muted: #9ba0aa;
+  
+  --shadow-gold: 0 10px 30px rgba(197, 168, 106, 0.08);
+  --shadow-neon: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  /* Shared components theme mappings (Dark mode overrides) */
+  --color-header-bg: rgba(11, 11, 14, 0.85);
+  --color-footer-bg: #060608;
+  --color-footer-border: rgba(255, 255, 255, 0.05);
+  --color-input-bg: rgba(22, 22, 28, 0.6);
+  --color-input-focus-bg: rgba(22, 22, 28, 0.9);
+  --color-social-bg: rgba(255, 255, 255, 0.03);
+  --color-card-overlay: rgba(11, 11, 14, 0.6);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dark);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  line-height: 1.3;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: var(--color-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-neon);
+}
+
+/* Luxury buttons */
+.btn-gold {
+  background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
+  color: #0b0b0e;
+  border: none;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(197, 168, 106, 0.2);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(197, 168, 106, 0.35);
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-outline:hover {
+  background: rgba(197, 168, 106, 0.08);
+  border-color: var(--color-gold-light);
+  color: var(--color-gold-light);
+  transform: translateY(-2px);
+}
+
+/* Premium Inputs */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+}
+
+.form-input {
+  background: var(--color-input-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 14px 16px;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: var(--transition-smooth);
+  outline: none;
+}
+
+.form-input:focus {
+  background: var(--color-input-focus-bg);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(197, 168, 106, 0.15);
+}
+
+/* Slide in page animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s var(--transition-smooth) forwards;
+}
+
+.animate-slide-up {
+  animation: slideInUp 0.8s var(--transition-smooth) forwards;
+}
+
+/* Form validation validation states */
+.form-input.invalid {
+  border-color: #ef4444;
+}
+
+.form-error {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 12px;
+}
+
+.status-pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status-confirmed {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.status-completed {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-cancelled {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}

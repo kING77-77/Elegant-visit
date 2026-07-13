@@ -1,0 +1,94 @@
+<div class="categories-container">
+  <div class="header-row">
+    <div>
+      <h1 class="page-title">Управление категориями</h1>
+      <p class="page-subtitle">Добавление, редактирование и удаление категорий пригласительных</p>
+    </div>
+    <button class="btn-gold" (click)="openCreateModal()">
+      <i class="fa-solid fa-plus"></i> Добавить категорию
+    </button>
+  </div>
+
+  <!-- Categories Table -->
+  <div class="table-card glass-panel">
+    @if (loading()) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Загрузка категорий...</p>
+      </div>
+    } @else {
+      @if (categories().length === 0) {
+        <p class="empty-text">Список категорий пуст</p>
+      } @else {
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Название категории</th>
+              <th class="actions-col">Действия</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (category of categories(); track category.id) {
+              <tr>
+                <td>{{ category.id }}</td>
+                <td class="cat-name">{{ category.name }}</td>
+                <td class="actions-cell">
+                  <button class="action-btn edit" title="Редактировать" (click)="openEditModal(category)">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="action-btn delete" title="Удалить" (click)="deleteCategory(category.id)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+    }
+  </div>
+
+  <!-- Form Modal -->
+  @if (isModalOpen()) {
+    <div class="modal-backdrop" (click)="closeModal()">
+      <div class="modal-card glass-panel animate-slide-up" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+
+        <h2 class="modal-title">{{ editingCategory() ? 'Редактировать категорию' : 'Создать категорию' }}</h2>
+        <p class="modal-subtitle">Укажите название категории для группировки шаблонов</p>
+
+        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" class="modal-form">
+          <div class="form-group">
+            <label class="form-label" for="catName">Название категории</label>
+            <input 
+              id="catName" 
+              type="text" 
+              formControlName="name" 
+              class="form-input" 
+              placeholder="Например: Свадьбы"
+              [class.invalid]="categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched"
+            >
+            @if (categoryForm.get('name')?.hasError('required') && categoryForm.get('name')?.touched) {
+              <span class="form-error">Название обязательно</span>
+            }
+            @if (categoryForm.get('name')?.hasError('minlength') && categoryForm.get('name')?.touched) {
+              <span class="form-error">Минимум 2 символа</span>
+            }
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-outline" (click)="closeModal()">Отмена</button>
+            <button type="submit" class="btn-gold" [disabled]="submitting()">
+              @if (submitting()) {
+                <div class="spinner spinner-white"></div> Сохранение...
+              } @else {
+                Сохранить <i class="fa-solid fa-check"></i>
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,147 @@
+<div class="landing-container animate-fade-in">
+  <!-- Hero Section -->
+  <section class="hero" id="about">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">{{ 'hero.title' | translate }}</h1>
+      <p class="hero-subtitle">{{ 'hero.subtitle' | translate }}</p>
+      <div class="hero-actions">
+        <a routerLink="/catalog" class="btn-gold">{{ 'hero.openCatalog' | translate }} <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#advantages" class="btn-outline">{{ 'hero.learnMore' | translate }}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Categories Grid (4 Squares) -->
+  <section class="categories-grid-section">
+    <div class="section-header">
+      <span class="section-tagline">{{ 'categories.tagline' | translate }}</span>
+      <h2 class="section-title">{{ 'categories.title' | translate }}</h2>
+    </div>
+
+    <div class="categories-grid">
+      <!-- Card 1: Weddings -->
+      <a [routerLink]="['/catalog']" [queryParams]="{ categoryName: 'Свадьбы' }" class="category-card glass-panel">
+        <div class="card-bg-glow"></div>
+        <div class="category-icon-wrapper">
+          <i class="fa-solid fa-gem"></i>
+        </div>
+        <h3 class="category-title">{{ 'Свадьба' | translate }}</h3>
+        <p class="category-subtitle">{{ 'categories.weddingDesc' | translate }}</p>
+        <span class="category-link">{{ 'categories.viewTemplates' | translate }} <i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+
+      <!-- Card 2: Birthdays -->
+      <a [routerLink]="['/catalog']" [queryParams]="{ categoryName: 'Дни рождения' }" class="category-card glass-panel">
+        <div class="card-bg-glow"></div>
+        <div class="category-icon-wrapper">
+          <i class="fa-solid fa-cake-candles"></i>
+        </div>
+        <h3 class="category-title">{{ 'День рождения' | translate }}</h3>
+        <p class="category-subtitle">{{ 'categories.birthdayDesc' | translate }}</p>
+        <span class="category-link">{{ 'categories.viewTemplates' | translate }} <i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+
+      <!-- Card 3: Baptisms -->
+      <a [routerLink]="['/catalog']" [queryParams]="{ categoryName: 'Крещение' }" class="category-card glass-panel">
+        <div class="card-bg-glow"></div>
+        <div class="category-icon-wrapper">
+          <i class="fa-solid fa-dove"></i>
+        </div>
+        <h3 class="category-title">{{ 'Крещение' | translate }}</h3>
+        <p class="category-subtitle">{{ 'categories.baptismDesc' | translate }}</p>
+        <span class="category-link">{{ 'categories.viewTemplates' | translate }} <i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+
+      <!-- Card 4: Others -->
+      <a [routerLink]="['/catalog']" [queryParams]="{ categoryName: 'Другое' }" class="category-card glass-panel">
+        <div class="card-bg-glow"></div>
+        <div class="category-icon-wrapper">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <h3 class="category-title">{{ 'Другое' | translate }}</h3>
+        <p class="category-subtitle">{{ 'categories.otherDesc' | translate }}</p>
+        <span class="category-link">{{ 'categories.viewTemplates' | translate }} <i class="fa-solid fa-chevron-right"></i></span>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- Advantages Section -->
+  <section id="advantages" class="advantages">
+    <div class="section-header">
+      <span class="section-tagline">{{ 'advantages.tagline' | translate }}</span>
+      <h2 class="section-title">{{ 'advantages.title' | translate }}</h2>
+    </div>
+    
+    <div class="advantages-grid">
+      <div class="advantage-card glass-panel">
+        <div class="advantage-icon">
+          <i class="fa-solid fa-gem"></i>
+        </div>
+        <h3 class="advantage-title">{{ 'advantages.premiumTitle' | translate }}</h3>
+        <p class="advantage-desc">{{ 'advantages.premiumDesc' | translate }}</p>
+      </div>
+
+      <div class="advantage-card glass-panel">
+        <div class="advantage-icon">
+          <i class="fa-solid fa-paper-plane"></i>
+        </div>
+        <h3 class="advantage-title">{{ 'advantages.telegramTitle' | translate }}</h3>
+        <p class="advantage-desc">{{ 'advantages.telegramDesc' | translate }}</p>
+      </div>
+
+      <div class="advantage-card glass-panel">
+        <div class="advantage-icon">
+          <i class="fa-solid fa-mobile-screen"></i>
+        </div>
+        <h3 class="advantage-title">{{ 'advantages.adaptabilityTitle' | translate }}</h3>
+        <p class="advantage-desc">{{ 'advantages.adaptabilityDesc' | translate }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Templates Section -->
+  <section class="featured">
+    <div class="section-header">
+      <span class="section-tagline">{{ 'popular.tagline' | translate }}</span>
+      <h2 class="section-title">{{ 'popular.title' | translate }}</h2>
+    </div>
+
+    @if (loading()) {
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>{{ 'popular.loading' | translate }}</p>
+      </div>
+    } @else {
+      <div class="templates-grid">
+        @for (template of featuredTemplates(); track template.id) {
+          <div class="template-card glass-panel animate-slide-up" [routerLink]="['/catalog', template.id]">
+            <div class="card-image-wrapper">
+              @if (template.id === 1) {
+                <video src="/images/ishxan-lilia.mp4" autoplay muted loop playsinline class="card-image" style="object-fit: cover;"></video>
+              } @else {
+                <img [src]="template.imageUrl" [alt]="template.title | translate" class="card-image">
+              }
+              <div class="card-overlay">
+                <span class="btn-gold btn-small">{{ 'popular.more' | translate }}</span>
+              </div>
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">{{ template.title | translate }}</h3>
+              <p class="card-description">{{ template.description | translate }}</p>
+              <div class="card-footer">
+                <span class="card-price">{{ template | localizedPrice }}</span>
+                <span class="card-link">{{ 'popular.view' | translate }} <i class="fa-solid fa-chevron-right"></i></span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="featured-actions">
+        <a routerLink="/catalog" class="btn-outline">{{ 'popular.viewAll' | translate }} <i class="fa-solid fa-list-ul"></i></a>
+      </div>
+    }
+  </section>
+</div>

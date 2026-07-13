@@ -1,0 +1,220 @@
+<div class="templates-container">
+  <div class="header-row">
+    <div>
+      <h1 class="page-title">Управление шаблонами</h1>
+      <p class="page-subtitle">Добавление, редактирование и удаление дизайнов пригласительных</p>
+    </div>
+    <button class="btn-gold" (click)="openCreateModal()">
+      <i class="fa-solid fa-plus"></i> Добавить шаблон
+    </button>
+  </div>
+
+  <!-- Templates Table -->
+  <div class="table-card glass-panel">
+    @if (loading()) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Загрузка шаблонов...</p>
+      </div>
+    } @else {
+      @if (templates().length === 0) {
+        <p class="empty-text">Список шаблонов пуст</p>
+      } @else {
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th class="thumb-col">Эскиз</th>
+              <th>Название</th>
+              <th>Категория</th>
+              <th>Цена</th>
+              <th class="actions-col">Действия</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (template of templates(); track template.id) {
+              <tr>
+                <td class="thumb-cell">
+                  <img [src]="template.imageUrl" [alt]="template.title" class="table-thumb">
+                </td>
+                <td class="tmpl-title">
+                  <div class="title-wrapper">
+                    <span class="main-title">{{ template.title }}</span>
+                    <span class="desc-preview">{{ template.description }}</span>
+                  </div>
+                </td>
+                <td>{{ getCategoryName(template.categoryId) }}</td>
+                <td class="tmpl-price">{{ template.price | number }} ₽</td>
+                <td class="actions-cell">
+                  <button class="action-btn edit" title="Редактировать" (click)="openEditModal(template)">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="action-btn delete" title="Удалить" (click)="deleteTemplate(template.id)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+    }
+  </div>
+
+  <!-- Form Modal -->
+  @if (isModalOpen()) {
+    <div class="modal-backdrop" (click)="closeModal()">
+      <div class="modal-card glass-panel animate-slide-up" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+
+        <h2 class="modal-title">{{ editingTemplate() ? 'Редактировать шаблон' : 'Создать шаблон' }}</h2>
+        <p class="modal-subtitle">Заполните детали дизайна приглашения</p>
+
+        <form [formGroup]="templateForm" (ngSubmit)="onSubmit()" class="modal-form">
+          <div class="form-group">
+            <label class="form-label" for="tmplTitle">Название шаблона</label>
+            <input 
+              id="tmplTitle" 
+              type="text" 
+              formControlName="title" 
+              class="form-input" 
+              placeholder="Например: Золотая роскошь"
+              [class.invalid]="templateForm.get('title')?.invalid && templateForm.get('title')?.touched"
+            >
+            @if (templateForm.get('title')?.hasError('required') && templateForm.get('title')?.touched) {
+              <span class="form-error">Название обязательно</span>
+            }
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label" for="tmplCategory">Категория</label>
+              <select id="tmplCategory" formControlName="categoryId" class="form-input">
+                @for (category of categories(); track category.id) {
+                  <option [value]="category.id">{{ category.name }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="form-group flex-1">
+              <label class="form-label" for="tmplPrice">Базовая стоимость (₽)</label>
+              <input 
+                id="tmplPrice" 
+                type="number" 
+                formControlName="price" 
+                class="form-input"
+                [class.invalid]="templateForm.get('price')?.invalid && templateForm.get('price')?.touched"
+              >
+              @if (templateForm.get('price')?.hasError('required') && templateForm.get('price')?.touched) {
+                <span class="form-error">Укажите цену</span>
+              }
+            </div>
+          </div>
+
+          <div class="form-section" style="margin-top: 15px; margin-bottom: 15px;">
+            <label class="form-label" style="font-weight: bold; color: var(--gold); display: block; margin-bottom: 8px;">Локализованные цены</label>
+            <div formGroupName="prices">
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label class="form-label" for="priceEn">English (USD $)</label>
+                  <input 
+                    id="priceEn" 
+                    type="number" 
+                    formControlName="en" 
+                    class="form-input"
+                    [class.invalid]="templateForm.get('prices.en')?.invalid && templateForm.get('prices.en')?.touched"
+                  >
+                </div>
+                <div class="form-group flex-1">
+                  <label class="form-label" for="priceRu">Русский (RUB ₽)</label>
+                  <input 
+                    id="priceRu" 
+                    type="number" 
+                    formControlName="ru" 
+                    class="form-input"
+                    [class.invalid]="templateForm.get('prices.ru')?.invalid && templateForm.get('prices.ru')?.touched"
+                  >
+                </div>
+              </div>
+              <div class="form-row" style="margin-top: 10px;">
+                <div class="form-group flex-1">
+                  <label class="form-label" for="priceHy">Հայերեն (AMD ֏)</label>
+                  <input 
+                    id="priceHy" 
+                    type="number" 
+                    formControlName="hy" 
+                    class="form-input"
+                    [class.invalid]="templateForm.get('prices.hy')?.invalid && templateForm.get('prices.hy')?.touched"
+                  >
+                </div>
+                <div class="form-group flex-1">
+                  <label class="form-label" for="priceKa">ქართული (GEL ₾)</label>
+                  <input 
+                    id="priceKa" 
+                    type="number" 
+                    formControlName="ka" 
+                    class="form-input"
+                    [class.invalid]="templateForm.get('prices.ka')?.invalid && templateForm.get('prices.ka')?.touched"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tmplPreset">Выбрать изображение из готовых</label>
+            <select 
+              id="tmplPreset" 
+              class="form-input" 
+              (change)="templateForm.get('imageUrl')?.setValue($any($event.target).value)"
+            >
+              @for (preset of imagePresets; track preset.value) {
+                <option [value]="preset.value" [selected]="templateForm.get('imageUrl')?.value === preset.value">
+                  {{ preset.label }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tmplImage">Путь к изображению (или ссылка)</label>
+            <input 
+              id="tmplImage" 
+              type="text" 
+              formControlName="imageUrl" 
+              class="form-input"
+              [class.invalid]="templateForm.get('imageUrl')?.invalid && templateForm.get('imageUrl')?.touched"
+            >
+            @if (templateForm.get('imageUrl')?.hasError('required') && templateForm.get('imageUrl')?.touched) {
+              <span class="form-error">Путь к изображению обязателен</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tmplDescription">Описание шаблона</label>
+            <textarea 
+              id="tmplDescription" 
+              formControlName="description" 
+              class="form-input text-area" 
+              placeholder="Введите подробное описание стиля, шрифтов..."
+              [class.invalid]="templateForm.get('description')?.invalid && templateForm.get('description')?.touched"
+            ></textarea>
+            @if (templateForm.get('description')?.hasError('required') && templateForm.get('description')?.touched) {
+              <span class="form-error">Описание обязательно</span>
+            }
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-outline" (click)="closeModal()">Отмена</button>
+            <button type="submit" class="btn-gold" [disabled]="submitting()">
+              @if (submitting()) {
+                <div class="spinner spinner-white"></div> Сохранение...
+              } @else {
+                Сохранить <i class="fa-solid fa-check"></i>
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+</div>

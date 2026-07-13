@@ -1,0 +1,53 @@
+<div class="admin-wrapper animate-fade-in">
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar glass-panel">
+    <div class="sidebar-header">
+      <div class="brand-logo">
+        <i class="fa-solid fa-crown logo-icon"></i>
+      </div>
+      <div class="brand-info">
+        <span class="brand-name">Elegant visit</span>
+        <span class="user-role">Администратор ({{ currentUser()?.username }})</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-item">
+        <i class="fa-solid fa-chart-line nav-icon"></i>
+        <span>Статистика</span>
+      </a>
+
+      <a routerLink="/admin/orders" routerLinkActive="active" class="nav-item">
+        <i class="fa-solid fa-receipt nav-icon"></i>
+        <span>Заказы</span>
+      </a>
+
+      <a routerLink="/admin/templates" routerLinkActive="active" class="nav-item">
+        <i class="fa-solid fa-scroll nav-icon"></i>
+        <span>Шаблоны</span>
+      </a>
+
+      <a routerLink="/admin/categories" routerLinkActive="active" class="nav-item">
+        <i class="fa-solid fa-tags nav-icon"></i>
+        <span>Категории</span>
+      </a>
+
+      <div class="nav-divider"></div>
+
+      <a routerLink="/" class="nav-item external-link">
+        <i class="fa-solid fa-globe nav-icon"></i>
+        <span>На сайт</span>
+      </a>
+
+      <button (click)="logout()" class="nav-item logout-btn">
+        <i class="fa-solid fa-right-from-bracket nav-icon"></i>
+        <span>Выйти</span>
+      </button>
+    </nav>
+  </aside>
+
+  <!-- Main Content Dashboard View -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
