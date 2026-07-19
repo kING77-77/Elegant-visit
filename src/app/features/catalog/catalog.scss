@@ -260,8 +260,45 @@
 }
 
 /* Responsive Styles */
-@media (max-width: 1024px) {
-  // Dynamic columns handled via grid auto-fit
+@media (max-width: 992px) {
+  .catalog-container {
+    padding: 30px 15px 60px;
+    gap: 30px;
+  }
+
+  .catalog-header {
+    gap: 8px;
+  }
+
+  .catalog-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .filters-section {
+    padding: 12px 20px;
+  }
+
+  .filter-pill {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .templates-grid {
+    gap: 20px;
+  }
+
+  .card-info {
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card-description {
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -270,7 +307,7 @@
   }
 
   .filter-pill {
-    padding: 8px 18px;
-    font-size: 0.85rem;
+    padding: 8px 14px;
+    font-size: 0.8rem;
   }
 }

@@ -60,13 +60,35 @@ body.dark-theme {
   padding: 0;
 }
 
-body {
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+header, footer, section, main, .landing-container, .catalog-container, .detail-container {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html, body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
   line-height: 1.6;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+  .btn-gold, .btn-outline {
+    padding: 10px 22px;
+    font-size: 0.88rem;
+  }
 }
 
 /* Scrollbar styling */

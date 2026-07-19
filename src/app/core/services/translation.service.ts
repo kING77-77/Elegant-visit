@@ -181,7 +181,7 @@ export class TranslationService {
       'footer.baptismDays': 'Крещение',
       'footer.otherEvents': 'Другие события',
       'footer.contactsTitle': 'Контакты',
-      'footer.address': 'Москва, Кутузовский пр-т, 12',
+      'footer.address': 'Tbilisi',
       'footer.copy': 'Все права защищены. Разработано с любовью и вниманием к деталям.',
 
       'catalog.title': 'Каталог дизайнов',
@@ -312,7 +312,7 @@ export class TranslationService {
       'footer.baptismDays': 'Baptism',
       'footer.otherEvents': 'Other Events',
       'footer.contactsTitle': 'Contacts',
-      'footer.address': 'Moscow, Kutuzovsky ave, 12',
+      'footer.address': 'Tbilisi',
       'footer.copy': 'All rights reserved. Developed with love and attention to details.',
 
       'catalog.title': 'Design Catalog',
