@@ -32,7 +32,8 @@ export class App implements OnInit {
     ).subscribe((event: NavigationEnd) => {
       this.closeMobileMenu();
       const url = event.urlAfterRedirects || event.url;
-      this.showPublicLayout.set(!url.startsWith('/admin'));
+      const isStandalone = url.startsWith('/admin') || url.startsWith('/wedding-invitation') || url.startsWith('/invitation');
+      this.showPublicLayout.set(!isStandalone);
       
       // Update searchQuery signal if search query param exists in current URL
       try {

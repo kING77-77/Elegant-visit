@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Category, Template, Order, DashboardStats } from '../models/types';
+import { Category, Template, Order, DashboardStats, TelegramStatus, TelegramConnectLink } from '../models/types';
 
 @Injectable({
   providedIn: 'root'
@@ -87,5 +87,18 @@ export class ApiService {
   // Stats API
   getDashboardStats(): Observable<DashboardStats> {
     return this.http.get<DashboardStats>(`${this.apiUrl}/stats`);
+  }
+
+  // Telegram Connection API
+  getTelegramStatus(): Observable<TelegramStatus> {
+    return this.http.get<TelegramStatus>(`${this.apiUrl}/telegram/status`);
+  }
+
+  getTelegramConnectLink(): Observable<TelegramConnectLink> {
+    return this.http.post<TelegramConnectLink>(`${this.apiUrl}/telegram/connect-link`, {});
+  }
+
+  disconnectTelegram(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/telegram/disconnect`);
   }
 }

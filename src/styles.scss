@@ -1,3 +1,5 @@
+@import 'intl-tel-input/dist/css/intlTelInput.css';
+
 /* Global Reset and Luxury Styling */
 :root {
   /* Default: Light Gold Theme */
@@ -309,3 +311,86 @@ a {
   color: #f87171;
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
+
+/* Luxury intl-tel-input Overrides */
+.iti {
+  width: 100%;
+  display: block;
+}
+
+.iti__selected-dial-code {
+  color: var(--color-gold);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.iti__country-list {
+  background-color: #1e1e24 !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-neon), 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  color: #f7f7f8 !important;
+  max-height: 220px !important;
+  z-index: 10000 !important;
+
+  /* Custom scrollbar for country dropdown */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-gold-dark);
+    border-radius: 3px;
+  }
+}
+
+.iti__country {
+  padding: 10px 14px !important;
+  font-size: 0.9rem !important;
+  transition: background-color 0.2s ease !important;
+
+  &:hover, &.iti__highlight {
+    background-color: rgba(197, 168, 106, 0.18) !important;
+  }
+
+  &.iti__active {
+    background-color: rgba(197, 168, 106, 0.28) !important;
+    font-weight: 600 !important;
+  }
+}
+
+.iti__dial-code {
+  color: var(--color-gold-light) !important;
+}
+
+.iti__search-input {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 4px !important;
+  color: #ffffff !important;
+  padding: 8px 12px !important;
+  margin: 6px !important;
+  width: calc(100% - 12px) !important;
+  outline: none !important;
+
+  &:focus {
+    border-color: var(--color-gold) !important;
+  }
+}
+
+/* Light theme overrides for country dropdown */
+body:not(.dark-theme) .iti__country-list {
+  background-color: #ffffff !important;
+  color: var(--color-text-dark) !important;
+}
+
+body:not(.dark-theme) .iti__search-input {
+  background-color: #f5f2ea !important;
+  color: var(--color-text-dark) !important;
+  border-color: rgba(197, 168, 106, 0.4) !important;
+}
+
+body:not(.dark-theme) .iti__country:hover,
+body:not(.dark-theme) .iti__country.iti__highlight {
+  background-color: #f7f2ea !important;
+}
+

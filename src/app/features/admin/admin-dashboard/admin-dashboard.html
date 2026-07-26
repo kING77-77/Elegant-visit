@@ -1,7 +1,56 @@
 <div class="dashboard-container">
   <div class="dashboard-header">
     <h1 class="dashboard-title">Панель статистики</h1>
-    <p class="dashboard-subtitle">Сводный анализ активности, заказов и популярности шаблонов</p>
+    <p class="dashboard-subtitle">Сводный анализ активности, заказов и уведомлений</p>
+  </div>
+
+  <!-- Telegram Connection Status Card -->
+  <div class="telegram-card glass-panel">
+    <div class="telegram-card-header">
+      <div class="telegram-title-group">
+        <i class="fa-brands fa-telegram telegram-icon"></i>
+        <h2 class="telegram-card-title">Telegram-уведомления</h2>
+      </div>
+
+      @if (telegramStatus()?.connected) {
+        <span class="telegram-badge badge-connected">Подключён</span>
+      } @else {
+        <span class="telegram-badge badge-disconnected">Не подключён</span>
+      }
+    </div>
+
+    <div class="telegram-card-body">
+      @if (telegramStatus()?.connected) {
+        <p class="telegram-info-text">
+          Telegram подключён: 
+          <strong class="telegram-username-highlight">
+            &#64;{{ telegramStatus()?.username || 'пользователь' }}
+          </strong>
+        </p>
+      } @else {
+        <p class="telegram-info-text">
+          Подключите Telegram, чтобы получать новые RSVP-ответы.
+        </p>
+      }
+    </div>
+
+    <div class="telegram-actions">
+      @if (!telegramStatus()?.connected) {
+        <button class="btn-telegram" (click)="connectTelegram()" [disabled]="loadingTelegram()">
+          <i class="fa-brands fa-telegram"></i> Подключить Telegram
+        </button>
+      }
+
+      <button class="btn-outline" (click)="loadTelegramStatus()" [disabled]="loadingTelegram()">
+        <i class="fa-solid fa-arrows-rotate"></i> Проверить подключение
+      </button>
+
+      @if (telegramStatus()?.connected) {
+        <button class="btn-danger-outline" (click)="disconnectTelegram()" [disabled]="loadingTelegram()">
+          <i class="fa-solid fa-link-slash"></i> Отключить
+        </button>
+      }
+    </div>
   </div>
 
   @if (loading()) {

@@ -102,18 +102,19 @@
               <div class="form-group flex-1">
                 <label class="form-label" for="phone">{{ 'modal.phone' | translate }}</label>
                 <input 
+                  #phoneInput
                   id="phone" 
-                  type="text" 
+                  type="tel" 
                   formControlName="phone" 
                   class="form-input" 
-                  [class.invalid]="hasError('phone', 'required') || hasError('phone', 'pattern')"
-                  placeholder="+995 (555) 55-55-55"
+                  [class.invalid]="hasError('phone', 'required') || hasError('phone', 'invalidPhone') || hasError('phone', 'pattern')"
+                  placeholder="555 12-34-56"
                 >
                 @if (hasError('phone', 'required')) {
                   <span class="form-error">{{ 'modal.phoneRequired' | translate }}</span>
                 }
-                @if (hasError('phone', 'pattern')) {
-                  <span class="form-error">{{ 'modal.phonePattern' | translate }}</span>
+                @if (hasError('phone', 'invalidPhone') || hasError('phone', 'pattern')) {
+                  <span class="form-error">{{ 'modal.phoneInvalid' | translate }}</span>
                 }
               </div>
 

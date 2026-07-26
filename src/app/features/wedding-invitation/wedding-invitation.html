@@ -1,0 +1,149 @@
+<div class="wedding-invitation-wrapper">
+
+  <!-- Ambient Decorative Golden Particles / Glow -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+
+  <!-- SECTION 1: HERO -->
+  <section class="invitation-hero">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-content reveal-on-scroll fade-in-up">
+      <span class="hero-pretitle">The Wedding Of</span>
+      <h1 class="hero-couple-names">
+        {{ groomName }} <span class="ampersand">&amp;</span> {{ brideName }}
+      </h1>
+      <p class="hero-wedding-date">{{ weddingDate }}</p>
+      <div class="hero-divider-line"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: INVITATION -->
+  <section class="invitation-section">
+    <div class="container">
+      <div class="invitation-card reveal-on-scroll fade-in">
+        <div class="decorative-crest" aria-hidden="true">
+          <i class="fa-solid fa-gem"></i>
+        </div>
+        <h2 class="invitation-heading">Dear Family &amp; Friends</h2>
+        <div class="gold-line-short"></div>
+        <p class="invitation-text">
+          We are delighted to invite you to celebrate one of the happiest days of our lives.<br />
+          Your presence will make this day even more special.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: EVENT DETAILS -->
+  <section class="details-section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll fade-in">
+        <span class="section-subtitle">Event Guide</span>
+        <h2 class="section-title">Wedding Schedule &amp; Details</h2>
+        <div class="gold-line"></div>
+      </div>
+
+      <div class="details-grid">
+        <!-- Date Card -->
+        <div class="glass-card reveal-on-scroll fade-in-up delay-1">
+          <div class="card-icon-wrapper">
+            <i class="fa-regular fa-calendar-check card-icon"></i>
+          </div>
+          <h3 class="card-title">Date</h3>
+          <p class="card-highlight">{{ weddingDateFormatted }}</p>
+          <p class="card-description">Save our date in your calendar</p>
+        </div>
+
+        <!-- Time Card -->
+        <div class="glass-card reveal-on-scroll fade-in-up delay-2">
+          <div class="card-icon-wrapper">
+            <i class="fa-regular fa-clock card-icon"></i>
+          </div>
+          <h3 class="card-title">Time</h3>
+          <p class="card-highlight">Gathering at 15:30</p>
+          <p class="card-description">Official ceremony starts at {{ ceremonyTime }}</p>
+        </div>
+
+        <!-- Ceremony Card -->
+        <div class="glass-card reveal-on-scroll fade-in-up delay-3">
+          <div class="card-icon-wrapper">
+            <i class="fa-solid fa-church card-icon"></i>
+          </div>
+          <h3 class="card-title">Ceremony</h3>
+          <p class="card-highlight">{{ ceremonyLocation }}</p>
+          <p class="card-description">{{ ceremonyAddress }}</p>
+        </div>
+
+        <!-- Reception Card -->
+        <div class="glass-card reveal-on-scroll fade-in-up delay-4">
+          <div class="card-icon-wrapper">
+            <i class="fa-solid fa-champagne-glasses card-icon"></i>
+          </div>
+          <h3 class="card-title">Reception</h3>
+          <p class="card-highlight">{{ receptionLocation }}</p>
+          <p class="card-description">Banquet &amp; party at {{ receptionTime }}<br />{{ receptionAddress }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: DRESS CODE -->
+  <section class="dresscode-section">
+    <div class="container">
+      <div class="dresscode-wrapper reveal-on-scroll fade-in">
+        <span class="section-subtitle">Attire Recommendations</span>
+        <h2 class="section-title">Dress Code</h2>
+        <div class="gold-line"></div>
+        <p class="dresscode-description">
+          We would be honored if you choose outfit colors from our wedding palette to complement our aesthetic:
+        </p>
+
+        <div class="swatches-container">
+          @for (swatch of dressCodeSwatches; track swatch.name) {
+            <div class="swatch-item">
+              <div
+                class="color-circle"
+                [style.background-color]="swatch.color"
+                [style.border-color]="swatch.border">
+              </div>
+              <span class="swatch-label">{{ swatch.name }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: WISHES -->
+  <section class="wishes-section">
+    <div class="container">
+      <div class="wishes-glass-card reveal-on-scroll fade-in-up">
+        <div class="wishes-icon-circle">
+          <i class="fa-solid fa-gift wishes-icon"></i>
+        </div>
+        <h2 class="wishes-title">Wedding Gifts</h2>
+        <div class="gold-line-short"></div>
+        <p class="wishes-text">
+          Your presence is the greatest gift for us.<br />
+          If you wish to honor us with a present, a monetary gift would be greatly appreciated.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: FOOTER -->
+  <footer class="invitation-footer">
+    <div class="container">
+      <div class="footer-content reveal-on-scroll fade-in">
+        <p class="footer-main-message">
+          "We are looking forward to celebrating this unforgettable day together with you."
+        </p>
+        <div class="footer-signature-block">
+          <span class="footer-with-love">With love,</span>
+          <h3 class="footer-couple-names">Bride &amp; Groom</h3>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>

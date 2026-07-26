@@ -52,3 +52,14 @@ export interface DashboardStats {
   eventDistribution: { [key: string]: number };
   popularTemplates: PopularTemplate[];
 }
+
+export interface TelegramStatus {
+  connected: boolean;
+  username?: string;
+  connectedAt?: string;
+}
+
+export interface TelegramConnectLink {
+  url: string;
+  expiresAt: string;
+}

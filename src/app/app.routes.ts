@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LandingComponent } from './features/landing/landing';
 import { CatalogComponent } from './features/catalog/catalog';
 import { TemplateDetailComponent } from './features/template-detail/template-detail';
+import { WeddingInvitationComponent } from './features/wedding-invitation/wedding-invitation';
 import { AdminLoginComponent } from './features/admin/admin-login/admin-login';
 import { AdminLayoutComponent } from './features/admin/admin-layout/admin-layout';
 import { AdminDashboardComponent } from './features/admin/admin-dashboard/admin-dashboard';
@@ -15,6 +16,8 @@ export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'catalog', component: CatalogComponent },
   { path: 'catalog/:id', component: TemplateDetailComponent },
+  { path: 'wedding-invitation', component: WeddingInvitationComponent },
+  { path: 'invitation', component: WeddingInvitationComponent },
 
   // Admin login
   { path: 'admin/login', component: AdminLoginComponent },

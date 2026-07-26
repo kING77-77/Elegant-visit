@@ -1,7 +1,8 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, signal, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import intlTelInput from 'intl-tel-input';
 import { ApiService } from '../../core/services/api.service';
 import { Template } from '../../core/models/types';
 import { TranslatePipe } from '../../core/pipes/translate.pipe';
@@ -15,11 +16,13 @@ import { TranslationService } from '../../core/services/translation.service';
   templateUrl: './template-detail.html',
   styleUrl: './template-detail.scss'
 })
-export class TemplateDetailComponent implements OnInit {
+export class TemplateDetailComponent implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly apiService = inject(ApiService);
   private readonly fb = inject(FormBuilder);
   public readonly translationService = inject(TranslationService);
+
+  @ViewChild('phoneInput') phoneInputRef?: ElementRef<HTMLInputElement>;
 
   readonly template = signal<Template | null>(null);
   readonly loading = signal<boolean>(true);
@@ -31,6 +34,7 @@ export class TemplateDetailComponent implements OnInit {
   readonly submitting = signal<boolean>(false);
   
   orderForm!: FormGroup;
+  private iti: any = null;
 
   // Event types for the dropdown
   readonly eventTypes = [
@@ -53,10 +57,14 @@ export class TemplateDetailComponent implements OnInit {
     this.initForm();
   }
 
+  ngOnDestroy(): void {
+    this.destroyIti();
+  }
+
   initForm(): void {
     this.orderForm = this.fb.group({
       customerName: ['', [Validators.required, Validators.minLength(2)]],
-      phone: ['', [Validators.required, Validators.pattern(/^\+?[0-9\s\-()]{7,20}$/)]],
+      phone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       eventType: ['Свадьба', [Validators.required]],
       eventDate: ['', [Validators.required]],
@@ -85,13 +93,66 @@ export class TemplateDetailComponent implements OnInit {
     });
     this.orderSuccess.set(false);
     this.isModalOpen.set(true);
+
+    // Initialize intl-tel-input after DOM updates
+    setTimeout(() => {
+      this.initIntlTelInput();
+    }, 50);
   }
 
   closeModal(): void {
+    this.destroyIti();
     this.isModalOpen.set(false);
   }
 
+  private initIntlTelInput(): void {
+    this.destroyIti();
+
+    if (this.phoneInputRef?.nativeElement) {
+      this.iti = intlTelInput(this.phoneInputRef.nativeElement, {
+        initialCountry: 'ge',
+        countryOrder: ['ge', 'am', 'ru'],
+        separateDialCode: true,
+        strictMode: true,
+        loadUtils: () => import('intl-tel-input/utils')
+      });
+
+      // Clear custom error on typing
+      this.phoneInputRef.nativeElement.addEventListener('input', () => {
+        const phoneControl = this.orderForm.get('phone');
+        if (phoneControl?.hasError('invalidPhone')) {
+          const errors = { ...phoneControl.errors };
+          delete errors['invalidPhone'];
+          phoneControl.setErrors(Object.keys(errors).length ? errors : null);
+        }
+      });
+    }
+  }
+
+  private destroyIti(): void {
+    if (this.iti) {
+      this.iti.destroy();
+      this.iti = null;
+    }
+  }
+
   onSubmit(): void {
+    const phoneControl = this.orderForm.get('phone');
+
+    if (this.iti) {
+      const isValid = this.iti.isValidNumber();
+      const rawVal = this.phoneInputRef?.nativeElement.value?.trim();
+
+      if (!rawVal) {
+        phoneControl?.setErrors({ required: true });
+      } else if (!isValid) {
+        phoneControl?.setErrors({ invalidPhone: true });
+      } else {
+        const fullNumber = this.iti.getNumber();
+        this.orderForm.patchValue({ phone: fullNumber });
+      }
+    }
+
     if (this.orderForm.invalid || !this.template()) {
       this.orderForm.markAllAsTouched();
       return;
@@ -115,7 +176,7 @@ export class TemplateDetailComponent implements OnInit {
         this.submitting.set(false);
         this.orderSuccess.set(true);
       },
-      error: (err) => {
+      error: () => {
         this.submitting.set(false);
         alert(this.translationService.translate('alert.error'));
       }

@@ -1,0 +1,367 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dashboard-title {
+  font-size: 2.2rem;
+  font-family: var(--font-serif);
+}
+
+.dashboard-subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* Stat Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.stat-card {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.icon-orders {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.icon-revenue {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.icon-avg {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-text);
+  font-family: var(--font-serif);
+}
+
+/* Telegram Connection Section */
+.telegram-card {
+  padding: 28px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.telegram-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.telegram-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.telegram-icon {
+  font-size: 1.8rem;
+  color: #0088cc;
+}
+
+.telegram-card-title {
+  font-size: 1.3rem;
+  font-family: var(--font-serif);
+  margin: 0;
+}
+
+.telegram-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-connected {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-disconnected {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.telegram-info-text {
+  font-size: 0.98rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.telegram-username-highlight {
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+.telegram-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-telegram {
+  background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-telegram:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 136, 204, 0.35);
+}
+
+.btn-danger-outline {
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-danger-outline:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+}
+
+/* Analytics Cards Grid */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.analytics-card {
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.card-header {
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 14px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-family: var(--font-serif);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gold-star {
+  color: var(--color-gold);
+}
+
+.empty-text {
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Popular templates list */
+.popular-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.popular-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  gap: 16px;
+}
+
+.rank-badge {
+  width: 28px;
+  height: 28px;
+  background: rgba(197, 168, 106, 0.15);
+  border: 1px solid var(--color-border);
+  color: var(--color-gold-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.template-title {
+  font-weight: 500;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+.orders-count {
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+/* Event distribution list */
+.distribution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dist-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dist-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.dist-name {
+  font-weight: 500;
+}
+
+.dist-count {
+  color: var(--color-text-muted);
+}
+
+.dist-bar-wrapper {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.dist-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold));
+  border-radius: 3px;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 80px 0;
+  color: var(--color-text-muted);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(197, 168, 106, 0.15);
+  border-top-color: var(--color-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-title {
+    font-size: 1.8rem;
+  }
+  .telegram-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-telegram, .btn-outline, .btn-danger-outline {
+    width: 100%;
+    justify-content: center;
+  }
+}
