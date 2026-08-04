@@ -1,0 +1,155 @@
+<div class="kids-invitation-wrapper">
+  
+  <!-- Language Selector Bar -->
+  <div class="language-bar">
+    <div class="lang-container">
+      <span class="lang-label"><i class="fa-solid fa-language"></i> Language:</span>
+      <button class="lang-btn" [class.active]="currentLang() === 'ru'" (click)="setLanguage('ru')">RU</button>
+      <button class="lang-btn" [class.active]="currentLang() === 'am'" (click)="setLanguage('am')">AM</button>
+      <button class="lang-btn" [class.active]="currentLang() === 'en'" (click)="setLanguage('en')">EN</button>
+      <button class="lang-btn" [class.active]="currentLang() === 'ge'" (click)="setLanguage('ge')">GE</button>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-content reveal-on-scroll">
+      <div class="hero-badge">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> {{ t.heroSubtitle }}
+      </div>
+      <h1 class="hero-title">
+        <span class="child-name">{{ t.childName }}</span>
+        <span class="turning-tag">{{ t.turningText }}</span>
+      </h1>
+      <p class="hero-date"><i class="fa-solid fa-calendar-heart"></i> {{ t.heroDate }}</p>
+      
+      <div class="hero-illustration-wrapper">
+        <img src="/images/kids_forest.jpg" alt="Magical Forest Hero" class="hero-image">
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,32L60,42.7C120,53,240,75,360,80C480,85,600,75,720,58.7C840,43,960,21,1080,21.3C1200,21,1320,43,1380,53.3L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z" fill="#fffdf9"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- CREATIVE PLAYFUL CONTENT BLOCKS (STAGGERED OFFSET LAYOUT) -->
+  <section class="playful-blocks-section">
+    <div class="container">
+      <div class="playful-grid">
+        
+        <!-- Block 1: Higher Offset Left -->
+        <div class="playful-card card-offset-high reveal-on-scroll">
+          <div class="card-image-box">
+            <img src="/images/forest_animals.png" alt="Forest Animals" class="card-img">
+            <div class="card-sparkle"><i class="fa-solid fa-star"></i></div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{{ t.block1Title }}</h3>
+            <p class="card-text">{{ t.block1Text }}</p>
+          </div>
+        </div>
+
+        <!-- Block 2: Lower Offset Right -->
+        <div class="playful-card card-offset-low reveal-on-scroll">
+          <div class="card-image-box">
+            <img src="/images/forest_party.png" alt="Woodland Party" class="card-img">
+            <div class="card-sparkle"><i class="fa-solid fa-cake-candles"></i></div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{{ t.block2Title }}</h3>
+            <p class="card-text">{{ t.block2Text }}</p>
+          </div>
+        </div>
+
+        <!-- Block 3: Offset Center Floating -->
+        <div class="playful-card card-offset-center reveal-on-scroll">
+          <div class="card-image-box">
+            <img src="/images/imgchild3.png" alt="Magical Woodland" class="card-img">
+            <div class="card-sparkle"><i class="fa-solid fa-tree"></i></div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{{ t.block3Title }}</h3>
+            <p class="card-text">{{ t.block3Text }}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Charming Birthday Title & Short Invitation Text -->
+      <div class="invitation-text-banner reveal-on-scroll">
+        <div class="banner-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+        <h2 class="banner-title">{{ t.invitationTitle }}</h2>
+        <p class="banner-desc">{{ t.invitationDesc }}</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EVENT DETAILS SECTION -->
+  <section class="event-details-section reveal-on-scroll">
+    <div class="container">
+      <div class="details-card">
+        <div class="details-header">
+          <i class="fa-solid fa-compass-drafting"></i>
+          <h2>{{ t.detailsTitle }}</h2>
+        </div>
+        <div class="details-grid">
+          <div class="detail-box">
+            <div class="detail-icon"><i class="fa-regular fa-calendar-days"></i></div>
+            <div class="detail-info">
+              <span class="d-label">{{ t.dateLabel }}</span>
+              <span class="d-val">{{ t.dateVal }}</span>
+            </div>
+          </div>
+
+          <div class="detail-box">
+            <div class="detail-icon"><i class="fa-regular fa-clock"></i></div>
+            <div class="detail-info">
+              <span class="d-label">{{ t.timeLabel }}</span>
+              <span class="d-val">{{ t.timeVal }}</span>
+            </div>
+          </div>
+
+          <div class="detail-box full-width">
+            <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="detail-info">
+              <span class="d-label">{{ t.locationLabel }}</span>
+              <span class="d-val">{{ t.locationVal }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN TIMER SECTION -->
+  <section class="countdown-wrapper reveal-on-scroll">
+    <div class="container">
+      <app-countdown 
+        [targetDateInput]="targetDate" 
+        [titleInput]="t.countdownTitle" 
+        [pretitleInput]="t.countdownPretitle" 
+        [subtitleInput]="''">
+      </app-countdown>
+    </div>
+  </section>
+
+  <!-- WARM CLOSING MESSAGE -->
+  <footer class="closing-footer reveal-on-scroll">
+    <div class="container">
+      <div class="closing-card">
+        <div class="decor-animals">
+          <i class="fa-solid fa-paw"></i>
+          <i class="fa-solid fa-feather"></i>
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <h2 class="closing-title">"{{ t.closingMessage }}"</h2>
+        <p class="closing-sub">{{ t.closingSub }}</p>
+      </div>
+    </div>
+  </footer>
+
+</div>

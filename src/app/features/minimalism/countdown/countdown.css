@@ -1,0 +1,84 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.countdown-section {
+    padding: 3rem 2rem;
+    min-height: auto !important;
+    background: linear-gradient(rgba(223, 205, 186, 0.1), rgba(255, 255, 255, 1));
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.countdown-section h2 {
+    color: var(--primary-color, #8c735a);
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+.timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.timer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.timer-value {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 3.5rem;
+    color: var(--primary-color, #8c735a);
+    line-height: 1;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.timer-divider {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--secondary-color, #dfcdba);
+    padding-bottom: 25px;
+}
+
+.timer-label {
+    font-family: var(--font-sans, 'Montserrat', sans-serif);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-light, #5e5a56);
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .timer-container {
+        gap: 0.8rem;
+    }
+    
+    .timer-value {
+        font-size: 2.2rem;
+    }
+    
+    .timer-divider {
+        font-size: 1.8rem;
+        padding-bottom: 18px;
+    }
+    
+    .timer-item {
+        min-width: 45px;
+    }
+    
+    .timer-label {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+}

@@ -1,0 +1,153 @@
+:root {
+  --gl-color-bg-dark: #0a0a0c;
+  --gl-color-gold: #d4af37;
+  --gl-color-gold-light: #f3e5ab;
+  --gl-color-text-main: #ffffff;
+  --gl-color-text-muted: rgba(255, 255, 255, 0.7);
+  --gl-color-glass-bg: rgba(255, 255, 255, 0.03);
+  --gl-color-glass-border: rgba(255, 255, 255, 0.08);
+  --gl-font-serif: 'Cormorant Garamond', serif;
+  --gl-font-sans: 'Montserrat', sans-serif;
+  --gl-transition-smooth: 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.golden-luxury-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--gl-color-bg-dark, #0a0a0c);
+  color: var(--gl-color-text-main, #ffffff);
+  font-family: var(--gl-font-sans, 'Montserrat', sans-serif);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.golden-luxury-wrapper h1,
+.golden-luxury-wrapper h2,
+.golden-luxury-wrapper h3,
+.golden-luxury-wrapper h4,
+.golden-luxury-wrapper h5,
+.golden-luxury-wrapper h6 {
+  font-family: var(--gl-font-serif, 'Cormorant Garamond', serif);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+/* Glassmorphism Utilities */
+.golden-luxury-wrapper .glass-panel {
+  background: var(--gl-color-glass-bg, rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--gl-color-glass-border, rgba(255, 255, 255, 0.08));
+  border-radius: 20px;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 900px;
+}
+@media (max-width: 480px) {
+  .golden-luxury-wrapper .glass-panel {
+    padding: 1rem;
+    border-radius: 15px;
+  }
+}
+
+/* Typography Utilities */
+.golden-luxury-wrapper .text-gold { color: var(--gl-color-gold, #d4af37); }
+.golden-luxury-wrapper .text-center { text-align: center; }
+
+.golden-luxury-wrapper .title-elegant {
+  font-size: clamp(1.8rem, 5vw, 4rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.golden-luxury-wrapper .subtitle-elegant {
+  font-family: var(--gl-font-sans, 'Montserrat', sans-serif);
+  font-weight: 300;
+  font-size: clamp(0.7rem, 2vw, 1.1rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gl-color-gold-light, #f3e5ab);
+}
+
+/* Animations */
+.golden-luxury-wrapper .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
+  filter: blur(8px);
+}
+.golden-luxury-wrapper .reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+.golden-luxury-wrapper .fade-in {
+  animation: glFadeIn 1.8s ease-out forwards;
+}
+@keyframes glFadeIn {
+  from { opacity: 0; filter: blur(15px); transform: scale(1.03); }
+  to   { opacity: 1; filter: blur(0);    transform: scale(1); }
+}
+
+/* Section base */
+.golden-luxury-wrapper section {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 2rem);
+  overflow: hidden;
+}
+
+/* Form inputs */
+.golden-luxury-wrapper input[type="text"],
+.golden-luxury-wrapper input[type="number"],
+.golden-luxury-wrapper input[type="email"] {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--gl-color-glass-border, rgba(255, 255, 255, 0.08));
+  color: white;
+  padding: 0.85rem 1.2rem;
+  border-radius: 8px;
+  font-family: var(--gl-font-sans, 'Montserrat', sans-serif);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: var(--gl-transition-smooth, 0.8s cubic-bezier(0.25, 1, 0.5, 1));
+  -webkit-appearance: none;
+}
+.golden-luxury-wrapper input[type="text"]:focus,
+.golden-luxury-wrapper input[type="number"]:focus,
+.golden-luxury-wrapper input[type="email"]:focus {
+  outline: none;
+  border-color: var(--gl-color-gold, #d4af37);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.golden-luxury-wrapper button {
+  background: transparent;
+  border: 1px solid var(--gl-color-gold, #d4af37);
+  color: var(--gl-color-gold, #d4af37);
+  padding: 0.9rem clamp(1.5rem, 4vw, 3rem);
+  font-family: var(--gl-font-sans, 'Montserrat', sans-serif);
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--gl-transition-smooth, 0.8s cubic-bezier(0.25, 1, 0.5, 1));
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+.golden-luxury-wrapper button:hover, 
+.golden-luxury-wrapper button:active {
+  background: var(--gl-color-gold, #d4af37);
+  color: var(--gl-color-bg-dark, #0a0a0c);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}

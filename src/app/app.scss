@@ -77,21 +77,24 @@
 .luxury-nav {
   display: flex;
   align-items: center;
-  gap: clamp(20px, 2vw, 36px);
+  gap: clamp(12px, 1.5vw, 32px);
   flex: 1;
   justify-content: center;
   min-width: 0;
   
   .nav-item {
-    font-size: 0.82rem;
+    font-size: clamp(0.7rem, 0.95vw, 0.82rem);
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: clamp(0.04em, 0.8vw, 0.1em);
     color: var(--color-text-muted);
     position: relative;
     padding: 6px 0;
     white-space: nowrap;
-    flex-shrink: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
     
     &::after {
       content: '';
@@ -558,6 +561,10 @@
     transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                 transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                 visibility 0.4s;
+    padding: 70px 15px 30px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-width: 100vw;
 
     &.open {
       opacity: 1;
@@ -569,19 +576,29 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
+      gap: clamp(4px, 1.5vh, 12px);
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 0 10px;
     }
 
     .mobile-nav-item {
       font-family: var(--font-serif);
-      font-size: 1.8rem;
+      font-size: clamp(0.95rem, 3.8vw, 1.4rem);
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: clamp(0.02em, 0.6vw, 0.08em);
+      line-height: 1.3;
       color: var(--color-text);
       transition: var(--transition-smooth);
       position: relative;
-      padding: 6px 0;
+      padding: 6px 4px;
+      text-align: center;
+      max-width: 95vw;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      box-sizing: border-box;
 
       &::after {
         content: '';
@@ -597,7 +614,7 @@
 
       &:hover, &.active {
         color: var(--color-gold-light);
-        transform: scale(1.05);
+        transform: scale(1.03);
 
         &::after {
           width: 60%;

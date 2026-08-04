@@ -1,0 +1,247 @@
+/* Global elegant styles for wedding app */
+
+:root {
+  --primary-color: #8c735a; /* elegant dark gold/bronze */
+  --secondary-color: #dfcdba; /* soft gold */
+  --bg-color: #fbf9f6; /* cream white */
+  --card-bg: rgba(255, 255, 255, 0.85); /* glassmorphism */
+  --text-main: #2c2a29;
+  --text-light: #5e5a56;
+  
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Montserrat', sans-serif;
+  
+  --transition: all 0.4s ease-in-out;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  margin: 0;
+  color: var(--primary-color);
+}
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+section {
+  padding: 5rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Custom premium buttons */
+button, .btn {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  border: 1px solid var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: var(--transition);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+button:hover, .btn:hover {
+  background: var(--primary-color);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(140, 115, 90, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Glassmorphism containers */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.fade-in {
+  animation: fadeIn 1.2s ease forwards;
+}
+
+/* Inputs and Forms */
+input[type="text"],
+input[type="number"],
+input[type="email"] {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-bottom: 1px solid var(--secondary-color);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text-main);
+  transition: var(--transition);
+}
+
+input:focus {
+  outline: none;
+  border-bottom-color: var(--primary-color);
+  box-shadow: 0 10px 10px -10px rgba(140, 115, 90, 0.2);
+}
+
+input::placeholder {
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+/* Custom Radio Buttons */
+.radio-group {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.radio-group label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  position: relative;
+  padding-left: 35px;
+}
+
+.radio-group input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 22px;
+  width: 22px;
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.radio-group input:checked ~ .checkmark {
+  background-color: var(--primary-color);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.radio-group input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Utility layout */
+.text-center { text-align: center; }
+.mb-2 { margin-bottom: 2rem; }
+.mt-2 { margin-top: 2rem; }
+
+/* Global Responsive Styles */
+@media (max-width: 768px) {
+  section {
+    padding: 3rem 1rem;
+  }
+  
+  .glass-panel {
+    padding: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .radio-group {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 2rem 1rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .glass-panel {
+    padding: 1rem;
+  }
+  
+  button, .btn {
+    padding: 0.8rem 1.5rem;
+    width: 100%;
+  }
+}

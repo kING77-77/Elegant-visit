@@ -1,0 +1,31 @@
+<section class="rsvp-section" id="rsvp">
+    <div class="glass-panel text-center fade-in">
+        <h2>Հարցաթերթիկ</h2>
+        <h2>Подтвердите участие</h2>
+        <p class="mb-2">Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև մարտի 26-ը:/Пожалуйста, подтвердите ваше присутствие до  26 марта!</p>
+
+        <form (submit)="send($event)">
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="come" value="Կարող եմ գալ" [(ngModel)]="come">
+                    <span class="checkmark"></span>
+                    Կարող եմ գալ <br> (Могу прийти)
+                </label>
+                <label>
+                    <input type="radio" name="come" value="Չեմ կարող գալ" [(ngModel)]="come">
+                    <span class="checkmark"></span>
+                    Չեմ կարող գալ <br> (Не могу)
+                </label>
+            </div>
+
+            <input type="text" placeholder="Անուն / Имя" [(ngModel)]="name" name="name" required />
+            <input type="text" placeholder="Ազգանուն / Фамилия" [(ngModel)]="surname" name="surname" required />
+            <input type="number" placeholder="Հյուրերի քանակ / Количество гостей" [(ngModel)]="guests" name="guests"
+                min="1" max="10" />
+
+            <button type="submit" class="mt-2" [disabled]="isSending">
+                {{ isSending ? 'Ուղարկվում է...' : 'Ուղարկել / Отправить' }}
+            </button>
+        </form>
+    </div>
+</section>

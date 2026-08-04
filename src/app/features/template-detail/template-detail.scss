@@ -143,11 +143,35 @@
   font-size: 0.95rem;
 }
 
+.action-buttons-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+  width: 100%;
+}
+
 .btn-large {
   padding: 16px;
   font-size: 1rem;
-  margin-top: 10px;
 }
+
+.btn-interactive-demo {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  background: rgba(197, 168, 106, 0.05);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--color-gold);
+    color: #0b0b0e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(197, 168, 106, 0.25);
+  }
+}
+
 
 .modal-backdrop {
   position: fixed;

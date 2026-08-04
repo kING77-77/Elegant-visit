@@ -43,9 +43,6 @@
       <div class="template-card glass-panel animate-slide-up" [routerLink]="['/catalog', template.id]">
         <div class="card-image-wrapper">
           <img [src]="template.imageUrl" [alt]="template.title | translate" class="card-image">
-          <div class="card-overlay">
-            <span class="btn-gold btn-small">{{ 'popular.more' | translate }}</span>
-          </div>
         </div>
         <div class="card-info">
           <h3 class="card-title">{{ template.title | translate }}</h3>

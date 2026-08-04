@@ -1,0 +1,31 @@
+<section class="countdown-section text-center">
+    <h2>Մնացել է / До свадьбы осталось</h2>
+    
+    <div class="timer-container fade-in">
+        <div class="timer-item">
+            <span class="timer-value">{{ format(days) }}</span>
+            <span class="timer-label">Օր / Дней</span>
+        </div>
+        
+        <div class="timer-divider">:</div>
+        
+        <div class="timer-item">
+            <span class="timer-value">{{ format(hours) }}</span>
+            <span class="timer-label">Ժամ / Часов</span>
+        </div>
+        
+        <div class="timer-divider">:</div>
+        
+        <div class="timer-item">
+            <span class="timer-value">{{ format(minutes) }}</span>
+            <span class="timer-label">Րոպե / Минут</span>
+        </div>
+        
+        <div class="timer-divider">:</div>
+        
+        <div class="timer-item">
+            <span class="timer-value">{{ format(seconds) }}</span>
+            <span class="timer-label">Վայրկյան / Секунд</span>
+        </div>
+    </div>
+</section>

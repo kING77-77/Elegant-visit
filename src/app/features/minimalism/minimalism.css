@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-color, #fbf9f6);
+  color: var(--text-main, #2c2a29);
+}
+
+.minimalism-container {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.main-content {
+  position: relative;
+}

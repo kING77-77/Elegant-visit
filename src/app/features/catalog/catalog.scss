@@ -111,6 +111,8 @@
   cursor: pointer;
   background: var(--color-surface-card);
   transition: var(--transition-smooth);
+  text-decoration: none;
+  color: inherit;
 }
 
 .template-card:hover {

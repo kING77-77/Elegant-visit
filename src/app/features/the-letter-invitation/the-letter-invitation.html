@@ -1,0 +1,409 @@
+<div class="letter-main-experience">
+
+  <!-- ==========================================================
+       OPENING SCREEN: REALISTIC ENVELOPE & WAX SEAL UNBOXING
+       ========================================================== -->
+  @if (!isEnvelopeOpened) {
+    <div class="envelope-overlay" [class.opening]="isOpening" (click)="openEnvelope()">
+      <div class="envelope-background-glow"></div>
+
+      <!-- FLOATING LANGUAGE SELECTOR ON ENVELOPE -->
+      <nav class="envelope-lang-bar" (click)="$event.stopPropagation()">
+        <div class="lang-bar-inner">
+          <span class="lang-label"><i class="fa-solid fa-globe"></i></span>
+          <div class="lang-buttons">
+            @for (l of languages; track l.code) {
+              <button 
+                type="button"
+                class="lang-chip" 
+                [class.active]="ts.currentLang() === l.code"
+                (click)="setLanguage(l.code)">
+                <span class="flag">{{ l.flag }}</span>
+                <span class="code">{{ l.label }}</span>
+              </button>
+            }
+          </div>
+        </div>
+      </nav>
+
+      <!-- 3D ENVELOPE CONTAINER -->
+      <div class="envelope-box">
+        <!-- Top Flap of Envelope -->
+        <div class="envelope-flap">
+          <div class="flap-border-gold"></div>
+        </div>
+
+        <!-- Envelope Back Pocket -->
+        <div class="envelope-pocket">
+          <!-- Inside Letter Preview Peeking Out -->
+          <div class="letter-peek">
+            <span class="peek-monogram">S &amp; M</span>
+            <h2 class="peek-names">Sophia &amp; Michael</h2>
+          </div>
+        </div>
+
+        <!-- Envelope Front Details & Wax Seal -->
+        <div class="envelope-front">
+          <div class="envelope-border-frame"></div>
+          
+          <span class="envelope-badge-sub">{{ t('envelopeTitle') }}</span>
+          <h1 class="envelope-couple-heading">{{ brideName }} <span class="amp">&amp;</span> {{ groomName }}</h1>
+          <p class="envelope-date-text">{{ weddingDate }}</p>
+
+          <!-- INTERACTIVE WAX SEAL BUTTON -->
+          <div class="wax-seal-button" (click)="openEnvelope()">
+            <div class="wax-seal-ring"></div>
+            <div class="wax-seal-inner">
+              <span class="seal-initials">S &amp; M</span>
+            </div>
+            <div class="seal-pulse-glow"></div>
+          </div>
+
+          <div class="tap-to-open-prompt">
+            <i class="fa-solid fa-hand-pointer tap-icon"></i>
+            <span>{{ t('openPrompt') }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- ==========================================================
+       UNFOLDED LUXURY INVITATION WEBSITE EXPERIENCE
+       ========================================================== -->
+  <div class="letter-invitation-wrapper" [class.visible]="isEnvelopeOpened">
+
+    <!-- FLOATING STICKY LANGUAGE SELECTOR -->
+    <nav class="letter-lang-bar">
+      <div class="lang-bar-inner">
+        <span class="lang-label"><i class="fa-solid fa-globe"></i></span>
+        <div class="lang-buttons">
+          @for (l of languages; track l.code) {
+            <button 
+              type="button"
+              class="lang-chip" 
+              [class.active]="ts.currentLang() === l.code"
+              (click)="setLanguage(l.code)">
+              <span class="flag">{{ l.flag }}</span>
+              <span class="code">{{ l.label }}</span>
+            </button>
+          }
+        </div>
+      </div>
+    </nav>
+
+    <!-- 1. HERO SECTION: PRINTED LETTERHEAD -->
+    <section class="letter-hero">
+      <div class="hero-paper-card reveal-on-scroll fade-in-up">
+        <div class="gold-foil-border"></div>
+        <div class="foil-corner top-left"></div>
+        <div class="foil-corner top-right"></div>
+        <div class="foil-corner bottom-left"></div>
+        <div class="foil-corner bottom-right"></div>
+
+        <div class="hero-image-frame">
+          <img src="/images/the_letter_hero.png" alt="Sophia & Michael" class="hero-portrait">
+          <div class="image-inner-shadow"></div>
+        </div>
+
+        <div class="hero-editorial-meta">
+          <div class="header-monogram-seal">
+            <span>S &amp; M</span>
+          </div>
+          <span class="hero-subtitle">{{ t('heroSubtitle') }}</span>
+          <h1 class="hero-couple-name">{{ t('heroCouple') }}</h1>
+          <div class="gold-flourish"></div>
+          <p class="hero-date">{{ t('heroDate') }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. INVITATION LETTER SECTION -->
+    <section class="letter-invitation-section">
+      <div class="letter-container">
+        <div class="editorial-letter-card reveal-on-scroll fade-in">
+          <div class="gold-foil-border"></div>
+          <div class="foil-corner top-left"></div>
+          <div class="foil-corner top-right"></div>
+          <div class="foil-corner bottom-left"></div>
+          <div class="foil-corner bottom-right"></div>
+
+          <div class="letter-icon-wrapper">
+            <i class="fa-solid fa-scroll letter-icon"></i>
+          </div>
+
+          <h2 class="letter-heading">{{ t('letterHeader') }}</h2>
+          <div class="beige-divider"></div>
+          <p class="letter-body">
+            {{ t('letterBody') }}
+          </p>
+
+          <div class="letter-signature-block">
+            <span class="signature-seal">{{ t('letterSeal') }}</span>
+            <h3 class="couple-signature">Sophia &amp; Michael</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN TIMER BAR -->
+    <section class="letter-countdown-section">
+      <div class="letter-container">
+        <div class="countdown-card reveal-on-scroll fade-in">
+          <div class="timer-flex">
+            <div class="timer-unit">
+              <span class="timer-val">{{ format(days) }}</span>
+              <span class="timer-lbl">{{ t('timerDays') }}</span>
+            </div>
+            <span class="timer-dot">•</span>
+            <div class="timer-unit">
+              <span class="timer-val">{{ format(hours) }}</span>
+              <span class="timer-lbl">{{ t('timerHours') }}</span>
+            </div>
+            <span class="timer-dot">•</span>
+            <div class="timer-unit">
+              <span class="timer-val">{{ format(minutes) }}</span>
+              <span class="timer-lbl">{{ t('timerMinutes') }}</span>
+            </div>
+            <span class="timer-dot">•</span>
+            <div class="timer-unit">
+              <span class="timer-val">{{ format(seconds) }}</span>
+              <span class="timer-lbl">{{ t('timerSeconds') }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. EVENT DETAILS SECTION -->
+    <section class="letter-details-section">
+      <div class="letter-container">
+        <div class="section-title-block reveal-on-scroll fade-in">
+          <span class="section-sub">{{ t('detailsSubtitle') }}</span>
+          <h2 class="section-main-title">{{ t('detailsTitle') }}</h2>
+          <div class="thin-gold-line"></div>
+        </div>
+
+        <div class="details-grid">
+          <!-- Date Card -->
+          <div class="editorial-card reveal-on-scroll fade-in-up delay-1">
+            <div class="card-number">01</div>
+            <h3 class="card-heading">{{ t('dateLabel') }}</h3>
+            <p class="card-main-val">{{ t('dateValue') }}</p>
+          </div>
+
+          <!-- Time Card -->
+          <div class="editorial-card reveal-on-scroll fade-in-up delay-2">
+            <div class="card-number">02</div>
+            <h3 class="card-heading">{{ t('timeLabel') }}</h3>
+            <p class="card-main-val">{{ t('timeValue') }}</p>
+          </div>
+
+          <!-- Location Card -->
+          <div class="editorial-card reveal-on-scroll fade-in-up delay-3">
+            <div class="card-number">03</div>
+            <h3 class="card-heading">{{ t('venueLabel') }}</h3>
+            <p class="card-main-val">{{ venueName }}</p>
+            <p class="card-sub-val">{{ venueCity }} — {{ venueAddress }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PROGRAM TIMELINE SECTION -->
+    <section class="letter-timeline-section">
+      <div class="letter-container">
+        <div class="section-title-block reveal-on-scroll fade-in">
+          <span class="section-sub">{{ t('timelineSubtitle') }}</span>
+          <h2 class="section-main-title">{{ t('timelineTitle') }}</h2>
+          <div class="thin-gold-line"></div>
+        </div>
+
+        <div class="timeline-wrapper">
+          <div class="timeline-center-line"></div>
+
+          <div class="timeline-item reveal-on-scroll fade-in-up delay-1">
+            <div class="timeline-badge">15:30</div>
+            <div class="timeline-content">
+              <h3 class="item-title">{{ t('t1Title') }}</h3>
+              <p class="item-desc">{{ t('t1Desc') }}</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal-on-scroll fade-in-up delay-2">
+            <div class="timeline-badge">16:30</div>
+            <div class="timeline-content">
+              <h3 class="item-title">{{ t('t2Title') }}</h3>
+              <p class="item-desc">{{ t('t2Desc') }}</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal-on-scroll fade-in-up delay-3">
+            <div class="timeline-badge">18:00</div>
+            <div class="timeline-content">
+              <h3 class="item-title">{{ t('t3Title') }}</h3>
+              <p class="item-desc">{{ t('t3Desc') }}</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal-on-scroll fade-in-up delay-4">
+            <div class="timeline-badge">21:00</div>
+            <div class="timeline-content">
+              <h3 class="item-title">{{ t('t4Title') }}</h3>
+              <p class="item-desc">{{ t('t4Desc') }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EDITORIAL GALLERY SECTION -->
+    <section class="letter-gallery-section">
+      <div class="letter-container">
+        <div class="section-title-block reveal-on-scroll fade-in">
+          <span class="section-sub">{{ t('gallerySubtitle') }}</span>
+          <h2 class="section-main-title">{{ t('galleryTitle') }}</h2>
+          <div class="thin-gold-line"></div>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-card tall reveal-on-scroll fade-in-up delay-1">
+            <img src="/images/gmSm1.png" alt="Gallery 1" class="gallery-img">
+            <div class="gallery-caption">
+              <span>Love &amp; Elegance</span>
+            </div>
+          </div>
+          <div class="gallery-card reveal-on-scroll fade-in-up delay-2">
+            <img src="/images/gmSm2.png" alt="Gallery 2" class="gallery-img">
+            <div class="gallery-caption">
+              <span>Precious Moments</span>
+            </div>
+          </div>
+          <div class="gallery-card reveal-on-scroll fade-in-up delay-3">
+            <img src="/images/gmSm3.png" alt="Gallery 3" class="gallery-img">
+            <div class="gallery-caption">
+              <span>Together Always</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. LOCATION & MAP SECTION -->
+    <section class="letter-location-section">
+      <div class="letter-container">
+        <div class="location-card reveal-on-scroll fade-in">
+          <div class="location-icon-wrapper">
+            <i class="fa-solid fa-map-pin location-icon"></i>
+          </div>
+          <span class="section-sub">{{ t('locationSubtitle') }}</span>
+          <h2 class="location-title">{{ venueName }}</h2>
+          <p class="location-address">{{ venueAddress }}<br />{{ venueCity }}</p>
+          
+          <a [href]="mapUrl" target="_blank" rel="noopener noreferrer" class="map-btn">
+            <i class="fa-solid fa-location-arrow"></i> {{ t('locationBtn') }}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. RSVP SECTION -->
+    <section class="letter-rsvp-section" id="rsvp">
+      <div class="letter-container">
+        <div class="rsvp-card reveal-on-scroll fade-in-up">
+          <span class="section-sub">{{ t('rsvpSubtitle') }}</span>
+          <h2 class="rsvp-heading">{{ t('rsvpTitle') }}</h2>
+          <div class="thin-gold-line"></div>
+          <p class="rsvp-text">{{ t('rsvpDesc') }}</p>
+
+          @if (!isSubmitted) {
+            <form (submit)="submitRsvp($event)" class="rsvp-form-wrapper">
+              <!-- Attendance Selector -->
+              <div class="attendance-toggle-group">
+                <button 
+                  type="button" 
+                  class="toggle-btn yes" 
+                  [class.active]="rsvpAttending === true"
+                  (click)="setAttending(true)">
+                  <i class="fa-solid fa-circle-check"></i> {{ t('rsvpYes') }}
+                </button>
+                <button 
+                  type="button" 
+                  class="toggle-btn no" 
+                  [class.active]="rsvpAttending === false"
+                  (click)="setAttending(false)">
+                  <i class="fa-solid fa-circle-xmark"></i> {{ t('rsvpNo') }}
+                </button>
+              </div>
+
+              <div class="form-grid">
+                <div class="field-item">
+                  <label for="gName" class="field-label">{{ t('rsvpName') }} *</label>
+                  <input 
+                    type="text" 
+                    id="gName" 
+                    class="field-input" 
+                    [placeholder]="t('rsvpNamePlaceholder')" 
+                    [(ngModel)]="guestName" 
+                    name="guestName" 
+                    required />
+                </div>
+
+                @if (rsvpAttending) {
+                  <div class="field-item">
+                    <label for="gCount" class="field-label">{{ t('rsvpCount') }}</label>
+                    <select id="gCount" class="field-input field-select" [(ngModel)]="guestCount" name="guestCount">
+                      <option [ngValue]="1">1</option>
+                      <option [ngValue]="2">2</option>
+                      <option [ngValue]="3">3</option>
+                      <option [ngValue]="4">4+</option>
+                    </select>
+                  </div>
+                }
+
+                <div class="field-item full">
+                  <label for="gNote" class="field-label">{{ t('rsvpNote') }}</label>
+                  <textarea 
+                    id="gNote" 
+                    class="field-input field-textarea" 
+                    rows="3" 
+                    [placeholder]="t('rsvpNotePlaceholder')"
+                    [(ngModel)]="guestNote" 
+                    name="guestNote"></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="submit-letter-btn" [disabled]="!guestName.trim() || isSubmitting">
+                @if (isSubmitting) {
+                  <i class="fa-solid fa-spinner fa-spin"></i>
+                } @else {
+                  <i class="fa-solid fa-paper-plane"></i> {{ t('rsvpSubmit') }}
+                }
+              </button>
+            </form>
+          } @else {
+            <div class="submitted-confirmation fade-in">
+              <div class="confirmation-seal">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <h3>{{ t('rsvpSuccess') }}</h3>
+              <p>{{ guestName }} — {{ rsvpAttending ? t('rsvpYes') : t('rsvpNo') }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FINAL SECTION & FOOTER -->
+    <footer class="letter-footer">
+      <div class="footer-inner reveal-on-scroll fade-in">
+        <p class="footer-quote">{{ t('footerMessage') }}</p>
+        <span class="footer-with-love">{{ t('footerWithLove') }}</span>
+        <h3 class="footer-names">{{ t('footerNames') }}</h3>
+      </div>
+    </footer>
+    
+
+  </div>
+
+</div>

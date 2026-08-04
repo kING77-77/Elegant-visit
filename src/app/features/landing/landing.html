@@ -118,11 +118,9 @@
         @for (template of featuredTemplates(); track template.id) {
           <div class="template-card glass-panel animate-slide-up" [routerLink]="['/catalog', template.id]">
             <div class="card-image-wrapper">
-              @if (template.id === 1) {
-                <video src="/images/ishxan-lilia.mp4" autoplay muted loop playsinline class="card-image" style="object-fit: cover;"></video>
-              } @else {
+              
                 <img [src]="template.imageUrl" [alt]="template.title | translate" class="card-image">
-              }
+            
               <div class="card-overlay">
                 <span class="btn-gold btn-small">{{ 'popular.more' | translate }}</span>
               </div>

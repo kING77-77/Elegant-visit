@@ -19,11 +19,9 @@
     <div class="detail-grid">
       <!-- Left Side: Template Mockup Image -->
       <div class="detail-visual glass-panel">
-        @if (template()!.id === 1) {
-          <video src="/images/ishxan-lilia.mp4" autoplay muted loop playsinline class="mockup-img" style="object-fit: cover;"></video>
-        } @else {
+ 
           <img [src]="template()!.imageUrl" [alt]="template()!.title" class="mockup-img">
-        }
+        
       </div>
 
       <!-- Right Side: Details & Action -->
@@ -62,9 +60,17 @@
           </div>
         </div>
 
-        <button class="btn-gold btn-large" (click)="openModal()">
-          {{ 'detail.orderBtn' | translate }} <i class="fa-solid fa-calendar-check"></i>
-        </button>
+        <div class="action-buttons-group">
+          @if (!isStrictCorporateTemplate()) {
+            <a [routerLink]="getTemplateLink(template())" target="_blank" rel="noopener noreferrer" class="btn-outline btn-large w-full text-center btn-interactive-demo">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> {{ 'detail.viewAllLanguages' | translate }}
+            </a>
+          }
+
+          <button class="btn-gold btn-large w-full" (click)="openModal()">
+            {{ 'detail.orderBtn' | translate }} <i class="fa-solid fa-calendar-check"></i>
+          </button>
+        </div>
       </div>
     </div>
   }

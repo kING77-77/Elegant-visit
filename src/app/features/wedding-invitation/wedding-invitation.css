@@ -22,6 +22,75 @@
   overflow-x: hidden;
 }
 
+/* In-Template Floating Language Switcher Bar */
+.in-template-lang-bar {
+  position: sticky;
+  top: 15px;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.5rem;
+  margin-bottom: -55px;
+  pointer-events: none;
+}
+
+.lang-bar-container {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(26, 23, 21, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 30px;
+  padding: 0.35rem 0.8rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.lang-bar-title {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: #e5d7c3;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lang-options {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 0.25rem 0.55rem;
+  color: #c9ba9b;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.25s ease;
+}
+
+.lang-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.lang-btn.active {
+  background: linear-gradient(135deg, #d4af37, #ab8620);
+  color: #1a1715;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+}
+
 /* Ambient Decorative Glow Circles */
 .ambient-glow {
   position: absolute;
@@ -148,10 +217,9 @@
 
 .hero-couple-names {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 8.5vw, 6.5rem);
+  font-size: clamp(3rem, 8.5vw, 6.8rem);
   font-weight: 300;
   line-height: 1.1;
-  letter-spacing: 1px;
   color: #ffffff;
   margin: 0 0 1.5rem 0;
   text-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
@@ -159,27 +227,25 @@
 
 .hero-couple-names .ampersand {
   font-family: 'Alex Brush', cursive;
-  font-weight: 400;
-  color: #e6c88b;
-  font-size: 1.1em;
-  padding: 0 0.2em;
+  color: #d4af37;
+  font-size: 0.9em;
+  margin: 0 0.2em;
 }
 
 .hero-wedding-date {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.95rem, 2.2vw, 1.3rem);
-  letter-spacing: 7px;
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  letter-spacing: 8px;
   text-transform: uppercase;
-  color: #ede3d3;
-  font-weight: 400;
+  color: #e5d7c3;
+  font-weight: 300;
   margin: 0 0 2rem 0;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-divider-line {
-  width: 80px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #e6c88b, transparent);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
   margin: 0 auto;
 }
 
@@ -187,35 +253,32 @@
    2. INVITATION SECTION
    ========================================== */
 .invitation-section {
-  padding: 8rem 0;
-  background-color: #fcfaf7;
-  text-align: center;
+  padding: 7rem 0 4rem;
   position: relative;
-  z-index: 2;
 }
 
 .invitation-card {
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: 28px;
-  padding: 4.5rem 2.5rem;
-  max-width: 840px;
-  margin: 0 auto;
+  border-radius: 24px;
+  padding: 4.5rem 3rem;
+  text-align: center;
   box-shadow: 0 20px 50px rgba(44, 40, 37, 0.05);
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .decorative-crest {
-  font-size: 1.5rem;
   color: #d4af37;
+  font-size: 1.4rem;
   margin-bottom: 1.5rem;
-  opacity: 0.85;
 }
 
 .invitation-heading {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 400;
   color: #1e1b18;
   margin: 0;
@@ -223,7 +286,7 @@
 
 .invitation-text {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1rem, 2.2vw, 1.18rem);
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
   font-weight: 300;
   line-height: 2;
   color: #4a443f;
@@ -235,57 +298,55 @@
    3. EVENT DETAILS SECTION
    ========================================== */
 .details-section {
-  padding: 8rem 0;
-  background: linear-gradient(180deg, #fcfaf7 0%, #f6f0e6 100%);
+  padding: 5rem 0 7rem;
   position: relative;
-  z-index: 2;
 }
 
 .details-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
 }
 
 .glass-card {
   background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 175, 55, 0.22);
-  border-radius: 24px;
-  padding: 3rem 2rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(230, 215, 195, 0.6);
+  border-radius: 20px;
+  padding: 2.8rem 1.8rem;
   text-align: center;
-  box-shadow: 0 16px 40px rgba(44, 40, 37, 0.04);
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 10px 30px rgba(44, 40, 37, 0.03);
 }
 
 .glass-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 50px rgba(212, 175, 55, 0.12);
   border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.12);
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .card-icon-wrapper {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: rgba(246, 240, 230, 0.8);
   border: 1px solid rgba(212, 175, 55, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.8rem;
+  margin: 0 auto 1.5rem;
 }
 
 .card-icon {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #b89230;
 }
 
 .card-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: 500;
   color: #1e1b18;
   margin: 0 0 0.8rem 0;
@@ -293,7 +354,7 @@
 
 .card-highlight {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #2c2825;
   margin: 0 0 0.5rem 0;
@@ -301,9 +362,8 @@
 
 .card-description {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #6b635b;
+  font-size: 0.85rem;
+  color: #6e655f;
   line-height: 1.6;
   margin: 0;
 }
@@ -312,15 +372,15 @@
    4. DRESS CODE SECTION
    ========================================== */
 .dresscode-section {
-  padding: 8rem 0;
-  background-color: #f6f0e6;
-  text-align: center;
-  position: relative;
-  z-index: 2;
+  padding: 6rem 0;
+  background: rgba(246, 240, 230, 0.4);
+  border-top: 1px solid rgba(230, 215, 195, 0.4);
+  border-bottom: 1px solid rgba(230, 215, 195, 0.4);
 }
 
 .dresscode-wrapper {
-  max-width: 860px;
+  text-align: center;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -328,18 +388,16 @@
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(0.95rem, 2vw, 1.1rem);
   font-weight: 300;
-  color: #4a443f;
   line-height: 1.8;
-  max-width: 650px;
-  margin: 0 auto 3.5rem;
+  color: #4a443f;
+  margin: 1.5rem 0 3rem 0;
 }
 
 .swatches-container {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
-  gap: 2.5rem;
+  gap: 2.2rem;
 }
 
 .swatch-item {
@@ -347,91 +405,273 @@
   flex-direction: column;
   align-items: center;
   gap: 0.8rem;
-  transition: transform 0.3s ease;
-}
-
-.swatch-item:hover {
-  transform: translateY(-5px);
 }
 
 .color-circle {
-  width: 68px;
-  height: 68px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   border: 2px solid;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.3s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
 }
 
 .swatch-item:hover .color-circle {
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+  transform: scale(1.1);
 }
 
 .swatch-label {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 1.5px;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
   text-transform: uppercase;
+  color: #5c5249;
   font-weight: 500;
-  color: #4a443f;
 }
 
 /* ==========================================
-   5. WISHES SECTION
+   5. RSVP ATTENDANCE SECTION (REPLACING GIFTS)
    ========================================== */
-.wishes-section {
-  padding: 8rem 0;
-  background: linear-gradient(180deg, #f6f0e6 0%, #ece3d5 100%);
+.rsvp-section {
+  padding: 7rem 0;
   position: relative;
   z-index: 2;
 }
 
-.wishes-glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(212, 175, 55, 0.28);
+.rsvp-glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 28px;
-  padding: 4.5rem 2.5rem;
+  padding: 4.5rem 3rem;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(44, 40, 37, 0.07);
   max-width: 780px;
   margin: 0 auto;
-  text-align: center;
-  box-shadow: 0 20px 50px rgba(44, 40, 37, 0.05);
 }
 
-.wishes-icon-circle {
-  width: 70px;
-  height: 70px;
+.rsvp-icon-circle {
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   background: rgba(246, 240, 230, 0.9);
-  border: 1px solid rgba(212, 175, 55, 0.35);
+  border: 1px solid rgba(212, 175, 55, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.8rem;
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.15);
 }
 
-.wishes-icon {
-  font-size: 1.6rem;
+.rsvp-icon {
+      font-size: 1.8rem;
   color: #b89230;
 }
 
-.wishes-title {
+.rsvp-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
   font-weight: 400;
   color: #1e1b18;
   margin: 0;
 }
 
-.wishes-text {
+.rsvp-description {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.98rem, 2.2vw, 1.15rem);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
   font-weight: 300;
-  line-height: 1.9;
+  line-height: 1.8;
   color: #4a443f;
   max-width: 620px;
-  margin: 0 auto;
+  margin: 0 auto 2.5rem;
+}
+
+/* Attendance Selector Buttons */
+.rsvp-attendance-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 580px) {
+  .rsvp-attendance-selector {
+    grid-template-columns: 1fr;
+  }
+}
+
+.attendance-option-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.1rem 1.4rem;
+  border-radius: 16px;
+  border: 2px solid #e8dec8;
+  background: #fdfbf7;
+  color: #5c5249;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.attendance-option-btn .option-icon {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.attendance-option-btn:hover {
+  border-color: #d4af37;
+  background: #ffffff;
+  transform: translateY(-2px);
+}
+
+.option-yes.selected {
+  border-color: #2e7d32;
+  background: #e8f5e9;
+  color: #1b5e20;
+  box-shadow: 0 4px 14px rgba(46, 125, 50, 0.2);
+}
+
+.option-yes.selected .option-icon {
+  color: #2e7d32;
+}
+
+.option-no.selected {
+  border-color: #c62828;
+  background: #ffebee;
+  color: #b71c1c;
+  box-shadow: 0 4px 14px rgba(198, 40, 40, 0.2);
+}
+
+.option-no.selected .option-icon {
+  color: #c62828;
+}
+
+/* RSVP Form Inputs */
+.rsvp-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 640px) {
+  .rsvp-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #3b3530;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid #d8ccb6;
+  background: #ffffff;
+  color: #2c2825;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: #b89230;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.rsvp-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.1rem 3rem;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, #d4af37, #ab8620);
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(184, 146, 48, 0.35);
+  transition: all 0.3s ease;
+}
+
+.rsvp-submit-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(184, 146, 48, 0.45);
+}
+
+.rsvp-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Success Confirmation Block */
+.rsvp-success-block {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.success-icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #e8f5e9;
+  border: 2px solid #66bb6a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  animation: pulseSuccess 2s infinite;
+}
+
+.success-icon {
+  font-size: 2.2rem;
+  color: #2e7d32;
+}
+
+.success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  color: #1b5e20;
+  margin: 0 0 0.8rem 0;
+}
+
+.success-details {
+  font-size: 1.05rem;
+  color: #388e3c;
+  font-weight: 500;
+}
+
+@keyframes pulseSuccess {
+  0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+  70% { box-shadow: 0 0 0 16px rgba(76, 175, 80, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
 }
 
 /* ==========================================
@@ -524,13 +764,13 @@
   .invitation-section,
   .details-section,
   .dresscode-section,
-  .wishes-section,
+  .rsvp-section,
   .invitation-footer {
     padding: 5rem 0;
   }
 
   .invitation-card,
-  .wishes-glass-card {
+  .rsvp-glass-card {
     padding: 3rem 1.5rem;
     border-radius: 20px;
   }
@@ -589,7 +829,7 @@
   }
 
   .invitation-card,
-  .wishes-glass-card {
+  .rsvp-glass-card {
     max-width: 1100px;
     padding: 6rem 4rem;
   }

@@ -188,4 +188,126 @@ export class TemplateDetailComponent implements OnInit, OnDestroy {
     const control = this.orderForm.get(controlName);
     return !!(control && control.hasError(errorType) && (control.dirty || control.touched));
   }
+
+isBohoChicTemplate(): boolean {
+  const t = this.template();
+
+  if (!t) return false;
+
+  const title = (t.title || '').toLowerCase();
+  const imgUrl = (t.imageUrl || '').toLowerCase();
+
+  return (
+    title.includes('boho') ||
+    title.includes('бохо') ||
+    title.includes('classic') ||
+    imgUrl.includes('boho') ||
+    imgUrl.includes('classic')
+  );
+}
+
+  isMagicalPartyTemplate(): boolean {
+    const t = this.template();
+    if (!t) return false;
+    const title = (t.title || '').toLowerCase();
+    const imgUrl = (t.imageUrl || '').toLowerCase();
+    return title.includes('magical') || title.includes('forest') || title.includes('лесная') || title.includes('детск') || title.includes('магическ') || imgUrl.includes('kids_forest') || t.id === 5;
+  }
+
+  isTheLetterTemplate(): boolean {
+    const t = this.template();
+    if (!t) return false;
+    const title = (t.title || '').toLowerCase();
+    const imgUrl = (t.imageUrl || '').toLowerCase();
+    return title.includes('letter') || title.includes('письмо') || title.includes('նամակ') || title.includes('წერի') || imgUrl.includes('the_letter') || t.id === 7;
+  }
+
+isStrictCorporateTemplate(): boolean {
+  const t = this.template();
+
+  if (!t) return false;
+
+  const title = (t.title || '').toLowerCase();
+  const imgUrl = (t.imageUrl || '').toLowerCase();
+
+  return (
+    title.includes('strict') ||
+    title.includes('строг') ||
+    title.includes('corporate') ||
+    title.includes('корпоратив') ||
+    imgUrl.includes('corporate')
+  );
+}
+
+ getTemplateLink(t: Template | null): string {
+  if (!t) return '/';
+
+  console.log('CLICK TEMPLATE:', t);
+
+  const title = (t.title || '').toLowerCase();
+  const imgUrl = (t.imageUrl || '').toLowerCase();
+  const desc = (t.description || '').toLowerCase();
+
+
+  // Golden Luxury
+  if (
+    title.includes('golden') ||
+    title.includes('luxury') ||
+    title.includes('золот') ||
+    imgUrl.includes('luxury')
+  ) {
+    return '/golden-luxury';
+  }
+
+
+  // Classic (раньше Boho)
+  if (
+    title.includes('classic') ||
+    title.includes('boho') ||
+    title.includes('бохо') ||
+    imgUrl.includes('classic') ||
+    imgUrl.includes('boho')
+  ) {
+    return '/wedding-invite';
+  }
+
+
+  // Minimalism
+  if (
+    title.includes('minimal') ||
+    title.includes('минимал') ||
+    imgUrl.includes('minimal')
+  ) {
+    return '/minimalism';
+  }
+
+
+  // The Letter / Corporate
+  if (
+    title.includes('letter') ||
+    title.includes('письмо') ||
+    title.includes('corporate') ||
+    title.includes('корпоратив') ||
+    desc.includes('corporate') ||
+    imgUrl.includes('letter')
+  ) {
+    return '/the-letter';
+  }
+
+
+  // Magical Party
+  if (
+    title.includes('magical') ||
+    title.includes('party') ||
+    title.includes('birthday') ||
+    title.includes('детск') ||
+    imgUrl.includes('kids') ||
+    imgUrl.includes('forest')
+  ) {
+    return '/kids-invitation';
+  }
+
+
+  return '/';
+}
 }

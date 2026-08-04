@@ -1,0 +1,48 @@
+<section id="countdown" class="countdown-section">
+  <div class="countdown-container">
+    <div class="countdown-card">
+      <div class="decorative-crest" aria-hidden="true">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+      </div>
+      <span class="countdown-pretitle">{{ pretitle }}</span>
+      <h3 class="countdown-title">{{ title }}</h3>
+      <div class="gold-line-short"></div>
+
+      <div class="timer-grid">
+        <div class="timer-box">
+          <div class="timer-number-wrapper">
+            <span class="timer-value">{{format(days)}}</span>
+          </div>
+          <span class="timer-label">{{ labelDays }}</span>
+        </div>
+
+        <div class="timer-colon" aria-hidden="true">:</div>
+
+        <div class="timer-box">
+          <div class="timer-number-wrapper">
+            <span class="timer-value">{{format(hours)}}</span>
+          </div>
+          <span class="timer-label">{{ labelHours }}</span>
+        </div>
+
+        <div class="timer-colon" aria-hidden="true">:</div>
+
+        <div class="timer-box">
+          <div class="timer-number-wrapper">
+            <span class="timer-value">{{format(minutes)}}</span>
+          </div>
+          <span class="timer-label">{{ labelMinutes }}</span>
+        </div>
+
+        <div class="timer-colon" aria-hidden="true">:</div>
+
+        <div class="timer-box">
+          <div class="timer-number-wrapper">
+            <span class="timer-value">{{format(seconds)}}</span>
+          </div>
+          <span class="timer-label">{{ labelSeconds }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

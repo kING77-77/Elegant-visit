@@ -1,5 +1,24 @@
 <div class="wedding-invitation-wrapper">
 
+  <!-- IN-TEMPLATE FLOATING LANGUAGE SELECTOR BAR -->
+  <div class="in-template-lang-bar">
+    <div class="lang-bar-container">
+      <span class="lang-bar-title"><i class="fa-solid fa-globe"></i> Language:</span>
+      <div class="lang-options">
+        @for (l of languages; track l.code) {
+          <button 
+            type="button"
+            class="lang-btn" 
+            [class.active]="ts.currentLang() === l.code"
+            (click)="setLanguage(l.code)">
+            <span class="flag-icon">{{ l.flag }}</span>
+            <span class="lang-code">{{ l.label }}</span>
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
   <!-- Ambient Decorative Golden Particles / Glow -->
   <div class="ambient-glow glow-1" aria-hidden="true"></div>
   <div class="ambient-glow glow-2" aria-hidden="true"></div>
@@ -8,7 +27,7 @@
   <section class="invitation-hero">
     <div class="hero-bg-overlay"></div>
     <div class="hero-content reveal-on-scroll fade-in-up">
-      <span class="hero-pretitle">The Wedding Of</span>
+      <span class="hero-pretitle">{{ t('heroPretitle') }}</span>
       <h1 class="hero-couple-names">
         {{ groomName }} <span class="ampersand">&amp;</span> {{ brideName }}
       </h1>
@@ -24,22 +43,24 @@
         <div class="decorative-crest" aria-hidden="true">
           <i class="fa-solid fa-gem"></i>
         </div>
-        <h2 class="invitation-heading">Dear Family &amp; Friends</h2>
+        <h2 class="invitation-heading">{{ t('invitationHeading') }}</h2>
         <div class="gold-line-short"></div>
         <p class="invitation-text">
-          We are delighted to invite you to celebrate one of the happiest days of our lives.<br />
-          Your presence will make this day even more special.
+          {{ t('invitationText') }}
         </p>
       </div>
     </div>
   </section>
 
+  <!-- COUNTDOWN SECTION -->
+  <app-countdown></app-countdown>
+
   <!-- SECTION 3: EVENT DETAILS -->
   <section class="details-section">
     <div class="container">
       <div class="section-header reveal-on-scroll fade-in">
-        <span class="section-subtitle">Event Guide</span>
-        <h2 class="section-title">Wedding Schedule &amp; Details</h2>
+        <span class="section-subtitle">{{ t('scheduleSubtitle') }}</span>
+        <h2 class="section-title">{{ t('scheduleTitle') }}</h2>
         <div class="gold-line"></div>
       </div>
 
@@ -49,9 +70,9 @@
           <div class="card-icon-wrapper">
             <i class="fa-regular fa-calendar-check card-icon"></i>
           </div>
-          <h3 class="card-title">Date</h3>
-          <p class="card-highlight">{{ weddingDateFormatted }}</p>
-          <p class="card-description">Save our date in your calendar</p>
+          <h3 class="card-title">{{ t('dateTitle') }}</h3>
+          <p class="card-highlight">{{ t('dateFormatted') }}</p>
+          <p class="card-description">{{ t('dateDesc') }}</p>
         </div>
 
         <!-- Time Card -->
@@ -59,9 +80,9 @@
           <div class="card-icon-wrapper">
             <i class="fa-regular fa-clock card-icon"></i>
           </div>
-          <h3 class="card-title">Time</h3>
-          <p class="card-highlight">Gathering at 15:30</p>
-          <p class="card-description">Official ceremony starts at {{ ceremonyTime }}</p>
+          <h3 class="card-title">{{ t('timeTitle') }}</h3>
+          <p class="card-highlight">{{ t('timeGathering') }}</p>
+          <p class="card-description">{{ t('timeCeremony') }}</p>
         </div>
 
         <!-- Ceremony Card -->
@@ -69,7 +90,7 @@
           <div class="card-icon-wrapper">
             <i class="fa-solid fa-church card-icon"></i>
           </div>
-          <h3 class="card-title">Ceremony</h3>
+          <h3 class="card-title">{{ t('ceremonyTitle') }}</h3>
           <p class="card-highlight">{{ ceremonyLocation }}</p>
           <p class="card-description">{{ ceremonyAddress }}</p>
         </div>
@@ -79,9 +100,9 @@
           <div class="card-icon-wrapper">
             <i class="fa-solid fa-champagne-glasses card-icon"></i>
           </div>
-          <h3 class="card-title">Reception</h3>
+          <h3 class="card-title">{{ t('receptionTitle') }}</h3>
           <p class="card-highlight">{{ receptionLocation }}</p>
-          <p class="card-description">Banquet &amp; party at {{ receptionTime }}<br />{{ receptionAddress }}</p>
+          <p class="card-description">{{ t('receptionParty') }}<br />{{ receptionAddress }}</p>
         </div>
       </div>
     </div>
@@ -91,11 +112,11 @@
   <section class="dresscode-section">
     <div class="container">
       <div class="dresscode-wrapper reveal-on-scroll fade-in">
-        <span class="section-subtitle">Attire Recommendations</span>
-        <h2 class="section-title">Dress Code</h2>
+        <span class="section-subtitle">{{ t('dressCodeSubtitle') }}</span>
+        <h2 class="section-title">{{ t('dressCodeTitle') }}</h2>
         <div class="gold-line"></div>
         <p class="dresscode-description">
-          We would be honored if you choose outfit colors from our wedding palette to complement our aesthetic:
+          {{ t('dressCodeDesc') }}
         </p>
 
         <div class="swatches-container">
@@ -114,36 +135,110 @@
     </div>
   </section>
 
-  <!-- SECTION 5: WISHES -->
-  <section class="wishes-section">
+  <!-- SECTION 5: RSVP ATTENDANCE FORM (REPLACING GIFTS) -->
+  <section class="rsvp-section" id="rsvp">
     <div class="container">
-      <div class="wishes-glass-card reveal-on-scroll fade-in-up">
-        <div class="wishes-icon-circle">
-          <i class="fa-solid fa-gift wishes-icon"></i>
+      <div class="rsvp-glass-card reveal-on-scroll fade-in-up">
+        <div class="rsvp-icon-circle">
+          <i class="fa-regular fa-envelope-open rsvp-icon"></i>
         </div>
-        <h2 class="wishes-title">Wedding Gifts</h2>
+        <span class="section-subtitle">{{ t('rsvpSubtitle') }}</span>
+        <h2 class="rsvp-title">{{ t('rsvpTitle') }}</h2>
         <div class="gold-line-short"></div>
-        <p class="wishes-text">
-          Your presence is the greatest gift for us.<br />
-          If you wish to honor us with a present, a monetary gift would be greatly appreciated.
+        <p class="rsvp-description">
+          {{ t('rsvpDesc') }}
         </p>
+
+        @if (!isSubmitted) {
+          <form (submit)="submitRsvp($event)" class="rsvp-form">
+            <!-- ATTENDANCE SELECTION BUTTONS -->
+            <div class="rsvp-attendance-selector">
+              <button 
+                type="button" 
+                class="attendance-option-btn option-yes"
+                [class.selected]="rsvpAttending === true"
+                (click)="setAttending(true)">
+                <i class="fa-solid fa-circle-check option-icon"></i>
+                <span class="option-label">{{ t('rsvpAttendingYes') }}</span>
+              </button>
+
+              <button 
+                type="button" 
+                class="attendance-option-btn option-no"
+                [class.selected]="rsvpAttending === false"
+                (click)="setAttending(false)">
+                <i class="fa-solid fa-circle-xmark option-icon"></i>
+                <span class="option-label">{{ t('rsvpAttendingNo') }}</span>
+              </button>
+            </div>
+
+            <!-- INPUT FIELDS -->
+            <div class="rsvp-form-grid">
+              <div class="form-group">
+                <label for="rsvpName" class="form-label">{{ t('rsvpNameLabel') }} *</label>
+                <input 
+                  type="text" 
+                  id="rsvpName" 
+                  class="form-control" 
+                  [placeholder]="t('rsvpNamePlaceholder')"
+                  [(ngModel)]="guestName" 
+                  name="guestName"
+                  required />
+              </div>
+
+              @if (rsvpAttending) {
+                <div class="form-group">
+                  <label for="rsvpCount" class="form-label">{{ t('rsvpCountLabel') }}</label>
+                  <select 
+                    id="rsvpCount" 
+                    class="form-control form-select" 
+                    [(ngModel)]="guestCount" 
+                    name="guestCount">
+                    <option [ngValue]="1">1</option>
+                    <option [ngValue]="2">2</option>
+                    <option [ngValue]="3">3</option>
+                    <option [ngValue]="4">4+</option>
+                  </select>
+                </div>
+              }
+
+              <div class="form-group full-width">
+                <label for="rsvpNote" class="form-label">{{ t('rsvpNoteLabel') }}</label>
+                <textarea 
+                  id="rsvpNote" 
+                  class="form-control form-textarea" 
+                  rows="3" 
+                  [placeholder]="t('rsvpNotePlaceholder')"
+                  [(ngModel)]="guestNote" 
+                  name="guestNote"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="rsvp-submit-btn" [disabled]="!guestName.trim() || isSubmitting">
+              @if (isSubmitting) {
+                <i class="fa-solid fa-spinner fa-spin"></i>
+              } @else {
+                <i class="fa-solid fa-paper-plane"></i> {{ t('rsvpSubmitBtn') }}
+              }
+            </button>
+          </form>
+        } @else {
+          <!-- SUCCESS CONFIRMATION STATE -->
+          <div class="rsvp-success-block fade-in">
+            <div class="success-icon-circle">
+              <i class="fa-solid fa-heart success-icon"></i>
+            </div>
+            <h3 class="success-title">{{ t('rsvpSuccessMsg') }}</h3>
+            <p class="success-details">
+              {{ guestName }} — {{ rsvpAttending ? t('rsvpAttendingYes') : t('rsvpAttendingNo') }}
+            </p>
+          </div>
+        }
       </div>
     </div>
   </section>
 
   <!-- SECTION 6: FOOTER -->
-  <footer class="invitation-footer">
-    <div class="container">
-      <div class="footer-content reveal-on-scroll fade-in">
-        <p class="footer-main-message">
-          "We are looking forward to celebrating this unforgettable day together with you."
-        </p>
-        <div class="footer-signature-block">
-          <span class="footer-with-love">With love,</span>
-          <h3 class="footer-couple-names">Bride &amp; Groom</h3>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <app-footer></app-footer>
 
 </div>

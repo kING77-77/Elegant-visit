@@ -47,11 +47,12 @@ export class PricingService {
     const locale = this.localeMap[priceKey] ?? 'en-US';
 
     try {
+      const hasDecimals = price % 1 !== 0;
       return new Intl.NumberFormat(locale, {
         style: 'currency',
         currency,
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
+        minimumFractionDigits: hasDecimals ? 2 : 0,
+        maximumFractionDigits: hasDecimals ? 2 : 0
       }).format(price);
     } catch {
       return `${price} ${currency}`;

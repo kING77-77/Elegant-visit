@@ -33,7 +33,11 @@ export class AdminTemplatesComponent implements OnInit {
     { label: 'Минимализм (Свадьба)', value: '/images/wedding_minimal.jpg' },
     { label: 'Строгий корпоративный (Корпоратив)', value: '/images/corporate_classic.jpg' },
     { label: 'Неоновая вечеринка (День рождения)', value: '/images/birthday_neon.jpg' },
-    { label: 'Сказочный лес (Детский праздник)', value: '/images/kids_forest.jpg' }
+    { label: 'Сказочный лес (Детский праздник)', value: '/images/kids_forest.jpg' },
+    { label: 'The Letter (Свадьба)', value: '/images/the_letter_hero.png' },
+    { label: 'Лесные зверята (Детский праздник)', value: '/images/forest_animals.png' },
+    { label: 'Сказочная вечеринка (Детский праздник)', value: '/images/forest_party.png' },
+    { label: 'Детский праздник 3', value: '/images/imgchild3.png' }
   ];
 
   ngOnInit(): void {

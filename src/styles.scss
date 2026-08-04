@@ -3,6 +3,13 @@
 /* Global Reset and Luxury Styling */
 :root {
   /* Default: Light Gold Theme */
+  --primary-color: #8c735a;
+  --secondary-color: #dfcdba;
+  --bg-color: #fbf9f6;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --text-main: #2c2a29;
+  --text-light: #5e5a56;
+
   --color-bg: #FCFAF6;                     /* Elegant warm ivory background */
   --color-surface: rgba(255, 255, 255, 0.75); /* Translucent glass white */
   --color-surface-card: rgba(255, 255, 255, 0.55);
@@ -15,8 +22,8 @@
   --color-text-muted: #7E7975;             /* Soft gold-tinted gray text */
   --color-text-dark: #1f2937;
   
-  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   
   --shadow-gold: 0 10px 30px rgba(197, 168, 106, 0.05);
   --shadow-neon: 0 8px 32px 0 rgba(44, 42, 41, 0.04);
